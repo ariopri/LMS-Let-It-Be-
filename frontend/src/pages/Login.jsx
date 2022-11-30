@@ -5,10 +5,8 @@ const Login = () => {
 
     return (
         <div>
-            <Container style={{ width: "500px" }}>
+            <Container maxWidth="sm">
                 <Grid
-                    container
-                    spacing={2}
                     direction="column"
                     paddingTop="7rem"
                     style={{ minHeight: '100vh' }}
