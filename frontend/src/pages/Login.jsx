@@ -1,12 +1,35 @@
-import { Avatar, Button, Grid, Paper, TextField } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Paper,
+  TextField,
+} from "@mui/material";
+import { Visibility } from "@mui/icons-material";
+import { VisibilityOff } from "@mui/icons-material";
 import { Container } from "@mui/system";
 import "../styles/login.css";
 import Google from "../assets/google.svg";
 import Facebook from "../assets/facebook-logo-2019.svg";
 import Github from "../assets/github (2).svg";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Login = () => {
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+    showPassword: false,
+  });
+  const handlePassVisibility = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
   return (
     <div className="login">
       <Container maxWidth="sm">
@@ -51,19 +74,46 @@ const Login = () => {
                   label="Enter your email"
                   variant="standard"
                   required
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item>
                 <TextField
-                  type="password"
+                  type={values.showPassword ? "text" : "password"}
                   fullWidth
                   label="Enter your password"
                   variant="standard"
                   required
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          onClick={handlePassVisibility}
+                          arial-label="toggle password"
+                          edge="end"
+                        >
+                          {values.showPassword ? (
+                            <Visibility />
+                          ) : (
+                            <VisibilityOff />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
               <Grid item>
-                <Button type="submit" fullWidth variant="contained">
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  style={{
+                    backgroundColor: "#3f51b5",
+                    color: "white",
+                    marginTop: "10px",
+                  }}
+                >
                   Login
                 </Button>
               </Grid>
