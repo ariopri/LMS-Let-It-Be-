@@ -6,21 +6,20 @@ import {
   InputAdornment,
   Paper,
   TextField,
-} from "@mui/material";
-import { Visibility } from "@mui/icons-material";
-import { VisibilityOff } from "@mui/icons-material";
-import { Container } from "@mui/system";
-import "../styles/login.css";
-import Google from "../assets/google.svg";
-import Facebook from "../assets/facebook-logo-2019.svg";
-import Github from "../assets/github (2).svg";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+} from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Container } from '@mui/system';
+import '../styles/login.css';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import Google from '../assets/google.svg';
+import Facebook from '../assets/facebook-logo-2019.svg';
+import Github from '../assets/github (2).svg';
 
-const Login = () => {
+function Login() {
   const [values, setValues] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
     showPassword: false,
   });
   const handlePassVisibility = () => {
@@ -37,27 +36,27 @@ const Login = () => {
           container
           direction="column"
           paddingTop="7rem"
-          style={{ minHeight: "100vh" }}
+          style={{ minHeight: '100vh' }}
         >
           <Paper elevation={2} sx={{ padding: 5 }}>
             <Grid container direction="column" spacing={2}>
               <Avatar
                 style={{
-                  marginTop: "-25px",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  backgroundColor: "red",
-                  width: "100px",
-                  height: "100px",
+                  marginTop: '-25px',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  backgroundColor: 'red',
+                  width: '100px',
+                  height: '100px',
                 }}
                 src="/broken-image.jpg"
               />
               <h2
                 style={{
-                  marginTop: "-20px",
-                  paddingBottom: "15px",
-                  textAlign: "center",
+                  marginTop: '-20px',
+                  paddingBottom: '15px',
+                  textAlign: 'center',
                 }}
               >
                 Login
@@ -65,7 +64,7 @@ const Login = () => {
               <Grid
                 item
                 style={{
-                  paddingBottom: "17px",
+                  paddingBottom: '17px',
                 }}
               >
                 <TextField
@@ -79,7 +78,7 @@ const Login = () => {
               </Grid>
               <Grid item>
                 <TextField
-                  type={values.showPassword ? "text" : "password"}
+                  type={values.showPassword ? 'text' : 'password'}
                   fullWidth
                   label="Enter your password"
                   variant="standard"
@@ -109,9 +108,9 @@ const Login = () => {
                   fullWidth
                   variant="contained"
                   style={{
-                    backgroundColor: "#3f51b5",
-                    color: "white",
-                    marginTop: "10px",
+                    backgroundColor: '#3f51b5',
+                    color: 'white',
+                    marginTop: '10px',
                   }}
                 >
                   Login
@@ -119,11 +118,13 @@ const Login = () => {
               </Grid>
               <p
                 style={{
-                  textAlign: "center",
+                  textAlign: 'center',
                 }}
               >
-                {" "}
-                <br /> --- Or Sign In With ---
+                {' '}
+                <br />
+                {' '}
+                --- Or Sign In With ---
               </p>
               <Grid container spacing={2}>
                 <Grid item xs={4}>
@@ -131,16 +132,16 @@ const Login = () => {
                     fullWidth
                     variant="contained"
                     style={{
-                      backgroundColor: "#4285F4",
-                      color: "white",
+                      backgroundColor: '#4285F4',
+                      color: 'white',
                     }}
                   >
                     <img
                       src={Google}
                       alt="google"
                       style={{
-                        width: "20px",
-                        height: "20px",
+                        width: '20px',
+                        height: '20px',
                       }}
                     />
                   </Button>
@@ -150,16 +151,16 @@ const Login = () => {
                     fullWidth
                     variant="contained"
                     style={{
-                      backgroundColor: "#3B5998",
-                      color: "white",
+                      backgroundColor: '#3B5998',
+                      color: 'white',
                     }}
                   >
                     <img
                       src={Facebook}
                       alt="facebook"
                       style={{
-                        width: "20px",
-                        height: "20px",
+                        width: '20px',
+                        height: '20px',
                       }}
                     />
                   </Button>
@@ -169,25 +170,28 @@ const Login = () => {
                     fullWidth
                     variant="contained"
                     style={{
-                      backgroundColor: "#333",
-                      color: "white",
+                      backgroundColor: '#333',
+                      color: 'white',
                     }}
                   >
                     <img
                       src={Github}
                       alt="github"
                       style={{
-                        width: "20px",
-                        height: "20px",
+                        width: '20px',
+                        height: '20px',
                       }}
                     />
                   </Button>
                 </Grid>
               </Grid>
-              <p style={{ textAlign: "center" }}>
-                {" "}
-                <br /> Don't have an account?{" "}
-                <Link to="/register" style={{ color: "red" }}>
+              <p style={{ textAlign: 'center' }}>
+                {' '}
+                <br />
+                {' '}
+                Don't have an account?
+                {' '}
+                <Link to="/register" style={{ color: 'red' }}>
                   Register
                 </Link>
               </p>
@@ -197,6 +201,6 @@ const Login = () => {
       </Container>
     </div>
   );
-};
+}
 
 export default Login;
