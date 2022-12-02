@@ -1,3 +1,7 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-undef */
+/* eslint-disable react/react-in-jsx-scope */
 import {
   Avatar,
   Button,
@@ -8,6 +12,7 @@ import {
   TextField,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Container } from '@mui/system';
 import '../styles/login.css';
 import { Link } from 'react-router-dom';
@@ -122,9 +127,7 @@ function Login() {
                 }}
               >
                 {' '}
-                <br />
-                {' '}
-                --- Or Sign In With ---
+                <br /> --- Or Sign In With ---
               </p>
               <Grid container spacing={2}>
                 <Grid item xs={4}>
@@ -188,9 +191,7 @@ function Login() {
               <p style={{ textAlign: 'center' }}>
                 {' '}
                 <br />
-                {' '}
-                Don't have an account?
-                {' '}
+                Don't have an account?{' '}
                 <Link to="/register" style={{ color: 'red' }}>
                   Register
                 </Link>

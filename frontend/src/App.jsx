@@ -1,13 +1,8 @@
-import Login from './pages/Login';
+/* eslint-disable react/react-in-jsx-scope */
 import Register from './pages/Register';
 
 function App() {
-  return (
-    <>
-      <Register />
-      {/* <Login /> */}
-    </>
-  );
+  return <Register />;
 }
 
 export default App;
