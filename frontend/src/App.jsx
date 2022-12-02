@@ -1,8 +1,10 @@
 /* eslint-disable react/react-in-jsx-scope */
-import Register from './pages/Register';
+import NavigationBar from './components/navigationBar/NavigationBar';
 
 function App() {
-  return <Register />;
+  return (
+    <NavigationBar />
+  );
 }
 
 export default App;
