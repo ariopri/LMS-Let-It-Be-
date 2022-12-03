@@ -78,7 +78,7 @@ function Login() {
                   label="Enter your email"
                   variant="standard"
                   required
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={e => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item>

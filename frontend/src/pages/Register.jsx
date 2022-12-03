@@ -1,6 +1,4 @@
-import {
-  Avatar, Grid, Paper, TextField,
-} from '@mui/material';
+import { Avatar, Grid, Paper, TextField } from '@mui/material';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Container } from '@mui/system';
 import React from 'react';
@@ -87,10 +85,7 @@ function Register() {
             </Grid>
             <p style={{ textAlign: 'center' }}>
               {' '}
-              <br />
-              {' '}
-              Already have an account?
-              {' '}
+              <br /> Already have an account?{' '}
               <Link to="/register" style={{ color: 'red' }}>
                 Login
               </Link>

@@ -2,9 +2,7 @@
 import NavigationBar from './components/navigationBar/NavigationBar';
 
 function App() {
-  return (
-    <NavigationBar />
-  );
+  return <NavigationBar />;
 }
 
 export default App;

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": " eslint --ext .js,.jsx,.ts,.tsx,.vue src",
+    "lint": " eslint .",
     "lint:fix": " eslint --ext .js,.jsx,.ts,.tsx,.vue src --fix",
     "lint-fix": "eslint . --fix"
   },
@@ -31,10 +31,13 @@
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^2.8.0",
     "vite": "^3.2.3"
   }
 }

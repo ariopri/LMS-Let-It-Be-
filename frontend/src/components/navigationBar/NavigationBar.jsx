@@ -1,8 +1,17 @@
+import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import {
-  CloseIcon, HamburgerIcon, MoonIcon, SunIcon,
-} from '@chakra-ui/icons';
-import {
-  Box, Container, Flex, Heading, HStack, IconButton, Image, Text, useColorModeValue, useColorMode, useDisclosure, Button,
+  Box,
+  Container,
+  Flex,
+  Heading,
+  HStack,
+  IconButton,
+  Image,
+  Text,
+  useColorModeValue,
+  useColorMode,
+  useDisclosure,
+  Button,
 } from '@chakra-ui/react';
 import { Link as LinkTo } from 'react-router-dom';
 
@@ -26,8 +35,7 @@ function NavLink({ nama, link, onClick }) {
         textDecoration: 'none',
       }}
       onClick={onClick}
-      w="max-content"
-    >
+      w="max-content">
       {nama}
     </Text>
   );
@@ -36,7 +44,7 @@ function NavLink({ nama, link, onClick }) {
 function NavigationBar() {
   const bgnavbar = useColorModeValue(
     'rgba(255, 255, 255, 0.8)',
-    'rgba(26, 32, 44, 0.8)',
+    'rgba(26, 32, 44, 0.8)'
   );
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -61,8 +69,7 @@ function NavigationBar() {
       backdropFilter="auto"
       backdropSaturate="180%"
       backdropBlur="5px"
-      boxShadow="sm"
-    >
+      boxShadow="sm">
       <Container maxW="7xl">
         <Flex h={16} alignItems="center" justifyContent="space-between">
           <IconButton
@@ -81,12 +88,14 @@ function NavigationBar() {
                   as="h3"
                   size="md"
                   fontWeight="500"
-                  display={{ base: 'none', sm: 'block' }}
-                >
+                  display={{
+                    base: 'none',
+                    sm: 'block',
+                  }}>
                   <Text
                     color={useColorModeValue(
                       'accentLight.400',
-                      'accentDark.400',
+                      'accentDark.400'
                     )}
                     as="span"
                     position="relative"
@@ -99,11 +108,10 @@ function NavigationBar() {
                       left: 0,
                       bg: useColorModeValue(
                         'accentLight.400',
-                        'accentDark.400',
+                        'accentDark.400'
                       ),
                       zIndex: -1,
-                    }}
-                  >
+                    }}>
                     Le It Be
                   </Text>
                 </Heading>
@@ -115,9 +123,8 @@ function NavigationBar() {
               as="nav"
               spacing={4}
               display={{ base: 'none', md: 'flex' }}
-              mr={4}
-            >
-              {Links.map((link) => (
+              mr={4}>
+              {Links.map(link => (
                 <NavLink key={link.nama} nama={link.nama} link={link.link} />
               ))}
             </HStack>
