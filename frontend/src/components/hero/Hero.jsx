@@ -34,7 +34,7 @@ const Hero = () => {
               fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
               Let It Be
             </Text>
-            <Text fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }}>
+            <Text fontSize={{ base: '2xl', md: '3xl', lg: '3xl' }}>
               Solusi untuk persiapan sbmptn dan Rain Mimpimu
             </Text>
           </Heading>
@@ -43,8 +43,8 @@ const Hero = () => {
             malesuada, nunc vel tincidunt lacinia, nisl nisl aliquet nunc, eget
           </Text>
           <Stack
-            direction={{ base: 'column-reverse', sm: 'row', md: 'row' }}
             align={'center'}
+            direction={{ base: 'column-reverse', sm: 'row', md: 'row' }}
             justifyContent={{
               base: 'center',
               sm: 'space-between',
@@ -58,8 +58,9 @@ const Hero = () => {
                 size={{ base: 'md', md: 'lg' }}
                 w={{ base: 'xs', sm: 'full' }}
                 rounded={'full'}
+                colorScheme={'blue'}
                 color={useColorModeValue('white', 'black')}
-                bg={useColorModeValue('accentLight.400', 'accentDark.400')}
+                // bg={useColorModeValue('accentLight.400', 'accentDark.400')}
                 _hover={{
                   bg: useColorModeValue('accentLight.500', 'accentDark.500'),
                   transform: 'translateY(2px)',
