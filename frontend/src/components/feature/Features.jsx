@@ -47,6 +47,51 @@ const Features = () => {
             </Text>
             <Box mt={'auto'} w="100%" h={0.9} bg={'white'} />
           </Stack>
+          <Stack
+            justify={'space-between'}
+            w="100%"
+            rounded={'xl'}
+            bgGradient="linear(to-b, rgba(158, 138, 252, 1), rgba(158, 138, 252, 1))"
+            px="8"
+            py="8">
+            <Text fontSize={{ base: '36', md: '50' }} fontWeight="500">
+              #2
+            </Text>
+            <Text fontSize={{ base: '18', md: '24' }} fontWeight="500">
+              Materi Terlengkap
+            </Text>
+            <Box mt={'auto'} w="100%" h={0.9} bg={'white'} />
+          </Stack>
+          <Stack
+            justify={'space-between'}
+            w="100%"
+            rounded={'xl'}
+            bgGradient="linear(to-b, rgba(97, 210, 242, 1), rgba(97, 210, 242, 1))"
+            px="8"
+            py="8">
+            <Text fontSize={{ base: '36', md: '50' }} fontWeight="500">
+              #3
+            </Text>
+            <Text fontSize={{ base: '18', md: '24' }} fontWeight="500">
+              Materi Terlengkap
+            </Text>
+            <Box mt={'auto'} w="100%" h={0.9} bg={'white'} />
+          </Stack>
+          <Stack
+            justify={'space-between'}
+            w="100%"
+            rounded={'xl'}
+            bgGradient="linear(to-b, rgba(255, 155, 41, 1), rgba(255, 155, 41, 1))"
+            px="8"
+            py="8">
+            <Text fontSize={{ base: '36', md: '50' }} fontWeight="500">
+              #4
+            </Text>
+            <Text fontSize={{ base: '18', md: '24' }} fontWeight="500">
+              Materi Terlengkap
+            </Text>
+            <Box mt={'auto'} w="100%" h={0.9} bg={'white'} />
+          </Stack>
         </SimpleGrid>
       </Flex>
     </Stack>
