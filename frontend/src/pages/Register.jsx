@@ -1,7 +1,4 @@
-import {
-  Avatar, Grid, Paper, TextField,
-} from '@mui/material';
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { Avatar, Grid, Paper, TextField } from '@mui/material';
 import { Container } from '@mui/system';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -14,8 +11,7 @@ function Register() {
           container
           direction="column"
           paddingTop="7rem"
-          style={{ minHeight: '100vh' }}
-        >
+          style={{ minHeight: '100vh' }}>
           <Paper elevation={2} sx={{ padding: 5 }}>
             <Grid container direction="column" spacing={2}>
               <Avatar
@@ -35,16 +31,14 @@ function Register() {
                   marginTop: '-20px',
                   paddingBottom: '15px',
                   textAlign: 'center',
-                }}
-              >
+                }}>
                 Register
               </h2>
               <Grid
                 item
                 style={{
                   paddingBottom: '17px',
-                }}
-              >
+                }}>
                 <TextField
                   id="demo-helper-text-aligned"
                   label="nama depan"
@@ -87,10 +81,7 @@ function Register() {
             </Grid>
             <p style={{ textAlign: 'center' }}>
               {' '}
-              <br />
-              {' '}
-              Already have an account?
-              {' '}
+              <br /> Already have an account?{' '}
               <Link to="/register" style={{ color: 'red' }}>
                 Login
               </Link>

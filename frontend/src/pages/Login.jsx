@@ -1,7 +1,3 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-undef */
-/* eslint-disable react/react-in-jsx-scope */
 import {
   Avatar,
   Button,
@@ -12,7 +8,6 @@ import {
   TextField,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Container } from '@mui/system';
 import '../styles/login.css';
 import { Link } from 'react-router-dom';
@@ -41,8 +36,7 @@ function Login() {
           container
           direction="column"
           paddingTop="7rem"
-          style={{ minHeight: '100vh' }}
-        >
+          style={{ minHeight: '100vh' }}>
           <Paper elevation={2} sx={{ padding: 5 }}>
             <Grid container direction="column" spacing={2}>
               <Avatar
@@ -62,23 +56,21 @@ function Login() {
                   marginTop: '-20px',
                   paddingBottom: '15px',
                   textAlign: 'center',
-                }}
-              >
+                }}>
                 Login
               </h2>
               <Grid
                 item
                 style={{
                   paddingBottom: '17px',
-                }}
-              >
+                }}>
                 <TextField
                   type="email"
                   fullWidth
                   label="Enter your email"
                   variant="standard"
                   required
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={e => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item>
@@ -94,8 +86,7 @@ function Login() {
                         <IconButton
                           onClick={handlePassVisibility}
                           arial-label="toggle password"
-                          edge="end"
-                        >
+                          edge="end">
                           {values.showPassword ? (
                             <Visibility />
                           ) : (
@@ -116,16 +107,14 @@ function Login() {
                     backgroundColor: '#3f51b5',
                     color: 'white',
                     marginTop: '10px',
-                  }}
-                >
+                  }}>
                   Login
                 </Button>
               </Grid>
               <p
                 style={{
                   textAlign: 'center',
-                }}
-              >
+                }}>
                 {' '}
                 <br /> --- Or Sign In With ---
               </p>
@@ -137,8 +126,7 @@ function Login() {
                     style={{
                       backgroundColor: '#4285F4',
                       color: 'white',
-                    }}
-                  >
+                    }}>
                     <img
                       src={Google}
                       alt="google"
@@ -156,8 +144,7 @@ function Login() {
                     style={{
                       backgroundColor: '#3B5998',
                       color: 'white',
-                    }}
-                  >
+                    }}>
                     <img
                       src={Facebook}
                       alt="facebook"
@@ -175,8 +162,7 @@ function Login() {
                     style={{
                       backgroundColor: '#333',
                       color: 'white',
-                    }}
-                  >
+                    }}>
                     <img
                       src={Github}
                       alt="github"
