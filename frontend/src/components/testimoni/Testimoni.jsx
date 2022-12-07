@@ -86,20 +86,19 @@ const Testimoni = () => {
               <Box maxW="100%">
                 <Box textAlign={'justify'}>
                   <Text>
-                    Seneng banget tau platform pusat ngoding dengan biaya mentor
-                    yang terjangkau dan kualitas mereka yang berkompeten,
-                    sekarang saya sudah lebih percaya diri dan ga takut sama
-                    yang namanya ngoding.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nullam auctor, nisl nec lacinia lacinia, nunc nisl ultrices
+                    nunc, nec ultricies nisl nunc vel mauris. Nullam auctor, nisl
                   </Text>
                   <Text>
-                    Thanks buat Tim yang sudah buat platform Pusat Ngoding!
+                    nec lacinia lacinia, nunc nisl ultrices nunc, nec ultricies
                   </Text>
                 </Box>
                 <br />
                 <chakra.span fontWeight={600} color={'teal.600'}>
-                  Agil Pangestu.
+                  Lorem Ipsum
                 </chakra.span>
-                <chakra.span pl="2">- Siswa SMAN 1 Bandung</chakra.span>
+                <chakra.span pl="2">- Siswa SMAN 8 Jakarta</chakra.span>
               </Box>
             </Flex>
           </Box>
@@ -150,18 +149,17 @@ const Testimoni = () => {
               <Box maxW="100%">
                 <Box textAlign={'justify'}>
                   <Text>
-                    Platform ini sangat membantu saya dalam mempelajari berbagai
-                    bahasa pemrograman dan hemat dari sisi waktu juga tenaga
-                    dengan mendapatkan mentor yang sangat hebat. Next Time saya
-                    akan menggunakan platform ini lagi.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nullam auctor, nisl nec lacinia lacinia, nunc nisl ultrices
+                    nunc, nec ultricies nisl nunc vel mauris. Nullam auctor, nisl
                   </Text>
-                  <Text>Terima Kasih Pusat Ngoding!</Text>
+                  <Text>Lorem Ipsum sit dolor amet</Text>
                 </Box>
                 <br />
                 <chakra.span fontWeight={600} color={'green.600'}>
-                  Galih Aryanto.
+                 Lorem Ipsum
                 </chakra.span>
-                <chakra.span pl="2">- Siswa SMKN 1 Purwokerto</chakra.span>
+                <chakra.span pl="2">- Siswa SMAN 81 Jakarta</chakra.span>
               </Box>
               <Box display="flex" alignItems={'center'} justify="center">
                 <Avatar
@@ -234,18 +232,16 @@ const Testimoni = () => {
               <Box maxW="100%">
                 <Box textAlign={'justify'}>
                   <Text>
-                    Ini adalah platform yang selama ini dicari-cari. Buat saya
-                    yang bukan seorang mahasiswa IT, bahasa pemrograman cukup
-                    sulit untuk dipelajari sendirian, termasuk belajar melalui
-                    bootcamp-bootcamp. Thanks Pusat Ngoding sudah mempertemukan
-                    saya dengan mentor berkompeten dan profesional.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nullam auctor, nisl nec lacinia lacinia, nunc nisl ultrices
+                    nunc, nec ultricies nisl nunc vel mauris. Nullam auctor, nisl
                   </Text>
                 </Box>
                 <br />
                 <chakra.span fontWeight={600} color={'blue.600'}>
-                  Gilang Ramadhan.
+                  Lorem Ipsum.
                 </chakra.span>
-                <chakra.span pl="2">- Siswa SMKN 1 Pekalongan</chakra.span>
+                <chakra.span pl="2">- Siswa SMAN 78 Jakarta</chakra.span>
               </Box>
             </Flex>
           </Box>
