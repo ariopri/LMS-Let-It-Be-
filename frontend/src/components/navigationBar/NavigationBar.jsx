@@ -19,7 +19,7 @@ const Links = [
   { nama: 'Roadmap', link: '/roadmap' },
   { nama: 'Hubungi', link: '/hubungi' },
   { nama: 'Tentang', link: '/tentang' },
-  { nama: 'Informasi', link: '/Informasi' },
+  { nama: 'Informasi', link: '/informasi' },
 ];
 
 function NavLink({ nama, link, onClick }) {
