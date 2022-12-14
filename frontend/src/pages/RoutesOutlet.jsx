@@ -2,6 +2,7 @@ import { Box, Flex, HStack, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import ReactTypingEffect from 'react-typing-effect';
+import Footer from '../components/footer/Footer';
 import NavigationBar from '../components/navigationBar/NavigationBar';
 
 const RoutesOutlet = () => {
@@ -38,6 +39,7 @@ const RoutesOutlet = () => {
       <Box my={'auto'} h="full" style={{ overflow: 'hidden' }}>
         <Outlet />
       </Box>
+      <Footer />
     </Flex>
   );
 };
