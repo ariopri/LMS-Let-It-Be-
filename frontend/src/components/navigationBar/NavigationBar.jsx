@@ -13,6 +13,7 @@ import {
   useDisclosure,
   Button,
 } from '@chakra-ui/react';
+import Logo from '../../assets/logo.svg';
 import { Link as LinkTo } from 'react-router-dom';
 
 const Links = [
@@ -83,7 +84,7 @@ function NavigationBar() {
           <HStack spacing={8} alignItems="center">
             <Box>
               <HStack as={LinkTo} to="/" alignItems="center">
-                <Image src="" alt="Logo" />
+                <Image src={Logo} alt="Logo" />
                 <Heading
                   as="h3"
                   size="md"
