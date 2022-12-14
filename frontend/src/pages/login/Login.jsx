@@ -2,6 +2,7 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
+  Checkbox,
   Container,
   FormControl,
   FormLabel,
@@ -12,11 +13,12 @@ import {
   InputGroup,
   InputRightElement,
   Stack,
+  Text,
   useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { CheckBox } from '@mui/icons-material';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo.svg';
 
 const Login = () => {
@@ -26,7 +28,7 @@ const Login = () => {
       maxW="lg"
       py={{
         base: '12',
-        md: '24',
+        md: '8',
       }}
       px={{
         base: '0',
@@ -116,17 +118,34 @@ const Login = () => {
                 </InputGroup>
               </FormControl>
               <HStack justify="space-between">
-                <CheckBox defaultChecked>
-                  <Text
-                    fontSize="sm"
-                    color={useColorModeValue('textLight.400', 'textDark.400')}>
-                    Ingat Saya
-                  </Text>
-                </CheckBox>
-                <Button to="/forgot-password" variant="link" fontSize="sm">
+                <Checkbox>Ingat Saya</Checkbox>
+                <Button
+                  to="/forgot-password"
+                  variant="link"
+                  fontSize="sm"
+                  colorScheme={'blue'}>
                   Lupa Kata Sandi?
                 </Button>
               </HStack>
+            </Stack>
+            <Stack spacing={6}>
+              <Button
+                type="submit"
+                colorScheme={'blue'}
+                size={'lg'}
+                fontSize={'md'}
+                w="full">
+                Masuk
+              </Button>
+              <Text textAlign={'center'}>
+                Belum memiliki akun?{' '}
+                <Button
+                  to="/forgot-password"
+                  variant="link"
+                  colorScheme={'blue'}>
+                  Daftar
+                </Button>
+              </Text>
             </Stack>
           </Stack>
         </Box>
