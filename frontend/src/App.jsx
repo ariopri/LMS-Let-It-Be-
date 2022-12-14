@@ -5,6 +5,7 @@ import Informasi from './pages/informasi/Informasi';
 import About from './pages/About';
 import HubungiKami from './pages/hubungi/HubungiKami';
 import CaraMendafatarPengajar from './pages/CaraDaftarPengajar';
+import Login from './pages/login/Login';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           path="cara_mendaftar_instruktur"
           element={<CaraMendafatarPengajar />}
         />
+        <Route path="masuk" element={<Login />} />
       </Route>
     </Routes>
   );
