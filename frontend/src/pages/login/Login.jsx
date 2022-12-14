@@ -139,12 +139,11 @@ const Login = () => {
               </Button>
               <Text textAlign={'center'}>
                 Belum memiliki akun?{' '}
-                <Button
-                  to="/forgot-password"
-                  variant="link"
-                  colorScheme={'blue'}>
+                <Link
+                  color={useColorModeValue('accentLight.400', 'accentDark.400')}
+                  to="/mendaftar">
                   Daftar
-                </Button>
+                </Link>
               </Text>
             </Stack>
           </Stack>
