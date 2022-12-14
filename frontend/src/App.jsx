@@ -6,6 +6,7 @@ import About from './pages/About';
 import HubungiKami from './pages/hubungi/HubungiKami';
 import CaraMendafatarPengajar from './pages/CaraDaftarPengajar';
 import Login from './pages/login/Login';
+import Daftar from './pages/register/Daftar';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           element={<CaraMendafatarPengajar />}
         />
         <Route path="masuk" element={<Login />} />
+        <Route path="mendaftar" element={<Daftar />} />
+        <Route path="register" element={<Daftar />} />
       </Route>
     </Routes>
   );
