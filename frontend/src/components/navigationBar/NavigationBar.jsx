@@ -94,10 +94,6 @@ function NavigationBar() {
                     sm: 'block',
                   }}>
                   <Text
-                    color={useColorModeValue(
-                      'accentLight.400',
-                      'accentDark.400'
-                    )}
                     as="span"
                     position="relative"
                     _after={{
@@ -107,13 +103,9 @@ function NavigationBar() {
                       position: 'absolute',
                       bottom: 1,
                       left: 0,
-                      bg: useColorModeValue(
-                        'accentLight.400',
-                        'accentDark.400'
-                      ),
                       zIndex: -1,
                     }}>
-                    Le It Be
+                    Let It Be
                   </Text>
                 </Heading>
               </HStack>
@@ -136,7 +128,7 @@ function NavigationBar() {
               mr={4}
               onClick={toggleColorMode}
             />
-            <Button as={LinkTo} to="/masuk" size="sm">
+            <Button as={LinkTo} to="/masuk" size="sm" {...navbarSet}>
               MASUK
             </Button>
           </Flex>
