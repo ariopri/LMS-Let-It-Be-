@@ -9,7 +9,6 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import IMGHero from '../../assets/Hero.png';
 import { Link as LinkTo } from 'react-router-dom';
 
 const Hero = () => {
@@ -35,13 +34,17 @@ const Hero = () => {
               Let It Be
             </Text>
             <Text fontSize={{ base: '2xl', md: '3xl', lg: '3xl' }}>
-              Solusi untuk persiapan sbmptn dan Rain Mimpimu
+              Solusi untuk persiapan sbmptn dan Raih Mimpimu
             </Text>
           </Heading>
           <Text fontSize={'md'} color={'gray.500'} align="justify">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-            malesuada, nunc vel tincidunt lacinia, nisl nisl aliquet nunc, eget
+            Apakah Kamu Sudah Siap Untuk Mencapai Mimpimu?
+            <Text fontSize={'md'} color={'gray.500'} align="justify">
+              Let It Be Akan Membantumu Mempersiapkan Diri Untuk Tes Masuk
+              Perguruan Tinggi. Ayo Daftarkan Dirimu Sekarang!
+            </Text>
           </Text>
+
           <Stack
             align={'center'}
             direction={{ base: 'column-reverse', sm: 'row', md: 'row' }}
@@ -54,13 +57,12 @@ const Hero = () => {
             <Box>
               <Button
                 as={LinkTo}
-                to="/register"
+                to="/mendaftar"
                 size={{ base: 'md', md: 'lg' }}
+                rounded={'md'}
                 w={{ base: 'xs', sm: 'full' }}
-                rounded={'full'}
-                colorScheme={'blue'}
                 color={useColorModeValue('white', 'black')}
-                // bg={useColorModeValue('accentLight.400', 'accentDark.400')}
+                bg={useColorModeValue('accentLight.400', 'accentDark.400')}
                 _hover={{
                   bg: useColorModeValue('accentLight.500', 'accentDark.500'),
                   transform: 'translateY(2px)',
@@ -79,7 +81,12 @@ const Hero = () => {
         justify={'center'}
         order={{ base: 1, lg: 2 }}
         pl={{ md: '40px' }}>
-        <Image p={5} alt={''} objectFit={'cover'} src={IMGHero} />
+        <Image
+          p={5}
+          alt={''}
+          objectFit={'cover'}
+          src={`${import.meta.env.VITE_APP_IMAGE_PATH + 'Hero.png'}`}
+        />
       </Flex>
     </Stack>
   );
