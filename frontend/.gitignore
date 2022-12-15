@@ -23,5 +23,12 @@ dist-ssr
 *.sln
 *.sw?
 
-# File
-src/assets/
+
+# Image
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+
+
