@@ -17,7 +17,7 @@ const data = [
   {
     nama: 'Alifah Rumaishah Indi',
     status: 'Mahasiswa Teknik Informatika',
-    text: 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt non officia deserunt mollit anim id est laborum.',
+    text: 'Life is a cycle, so just keep going.',
     avatar: 'https://avatars.githubusercontent.com/u/115602696?v=4',
     sbg: 'Hustler',
     github: 'https://github.com/indialifah',
