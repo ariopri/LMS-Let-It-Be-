@@ -13,7 +13,6 @@ import {
   useDisclosure,
   Button,
 } from '@chakra-ui/react';
-import Logo from '../../assets/logo.svg';
 import { Link as LinkTo } from 'react-router-dom';
 
 const Links = [
@@ -42,7 +41,7 @@ function NavLink({ nama, link, onClick }) {
   );
 }
 
-function NavigationBar() {
+const NavigationBar = () => {
   const bgnavbar = useColorModeValue(
     'rgba(255, 255, 255, 0.8)',
     'rgba(26, 32, 44, 0.8)'
@@ -60,19 +59,25 @@ function NavigationBar() {
   return (
     <Box
       as="header"
-      position="sticky"
+      position={'sticky'}
       top={0}
       left={0}
       right={0}
-      w="full"
+      w={'full'}
       zIndex={3}
       bg={bgnavbar}
       backdropFilter="auto"
-      backdropSaturate="180%"
+      backdropsaturation="180%"
       backdropBlur="5px"
       boxShadow="sm">
-      <Container maxW="7xl">
-        <Flex h={16} alignItems="center" justifyContent="space-between">
+      <Container maxW={'7xl'}>
+        <Flex
+          h={16}
+          alignItems="center"
+          yarn
+          add
+          dotenv
+          justifyContent="space-between">
           <IconButton
             variant="ghost"
             size="md"
@@ -84,7 +89,10 @@ function NavigationBar() {
           <HStack spacing={8} alignItems="center">
             <Box>
               <HStack as={LinkTo} to="/" alignItems="center">
-                <Image src={Logo} alt="Logo" />
+                <Image
+                  src={`${import.meta.env.VITE_APP_IMAGE_PATH + 'logo.svg'} `}
+                  alt="Logo"
+                />
                 <Heading
                   as="h3"
                   size="md"
@@ -136,6 +144,6 @@ function NavigationBar() {
       </Container>
     </Box>
   );
-}
+};
 
 export default NavigationBar;
