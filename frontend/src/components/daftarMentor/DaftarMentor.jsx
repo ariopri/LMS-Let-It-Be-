@@ -36,8 +36,7 @@ const DaftarMentor = () => {
           as={LinkTo}
           to={'cara_mendaftar_instruktur'}
           color={useColorModeValue('white', 'black')}
-          colorScheme={'blue'}
-          //   bg={useColorModeValue('accentLight.400', 'accentDark.400')}
+          bg={useColorModeValue('accentLight.400', 'accentDark.400')}
           _hover={{
             bg: useColorModeValue('accentLight.500', 'accentDark.500'),
           }}
