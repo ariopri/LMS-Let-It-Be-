@@ -69,10 +69,9 @@ export default function Informasi() {
         Informasi
       </Heading>
       <Text color={'gray.500'}>
-        korem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        condimentum, nisl eget ultricies tincidunt, nisl elit lacinia nunc, ut
-        aliquam massa nisl eget dolor. Sed euismod, nisl eget ultricies
-        tincidunt, nisl elit lacinia nunc, ut aliquam massa nisl eget dolor.
+        Let It Be sedang membuka kesempatan bagi semua orang untuk bergabung
+        sebagai pengajar. Manfaatkan sebaik mungkin dan jangan ragu untuk
+        bergabung. Kami nantikan anda mendaftar sebagai bagian dari kami!
       </Text>
       <ContainerInformasi judul="Belajar" data={Belajar} />
       <ContainerInformasi judul="Forum" data={Forum} />
