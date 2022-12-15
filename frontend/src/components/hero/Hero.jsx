@@ -59,6 +59,7 @@ const Hero = () => {
                 as={LinkTo}
                 to="/mendaftar"
                 size={{ base: 'md', md: 'lg' }}
+                rounded={'md'}
                 w={{ base: 'xs', sm: 'full' }}
                 color={useColorModeValue('white', 'black')}
                 bg={useColorModeValue('accentLight.400', 'accentDark.400')}
