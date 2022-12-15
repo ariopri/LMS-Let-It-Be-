@@ -34,13 +34,17 @@ const Hero = () => {
               Let It Be
             </Text>
             <Text fontSize={{ base: '2xl', md: '3xl', lg: '3xl' }}>
-              Solusi untuk persiapan sbmptn dan Rain Mimpimu
+              Solusi untuk persiapan sbmptn dan Raih Mimpimu
             </Text>
           </Heading>
           <Text fontSize={'md'} color={'gray.500'} align="justify">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-            malesuada, nunc vel tincidunt lacinia, nisl nisl aliquet nunc, eget
+            Apakah Kamu Sudah Siap Untuk Mencapai Mimpimu?
+            <Text fontSize={'md'} color={'gray.500'} align="justify">
+              Let It Be Akan Membantumu Mempersiapkan Diri Untuk Tes Masuk
+              Perguruan Tinggi. Ayo Daftarkan Dirimu Sekarang!
+            </Text>
           </Text>
+
           <Stack
             align={'center'}
             direction={{ base: 'column-reverse', sm: 'row', md: 'row' }}
