@@ -9,7 +9,6 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import IMGHero from '../../assets/Hero.png';
 import { Link as LinkTo } from 'react-router-dom';
 
 const Hero = () => {
@@ -54,13 +53,11 @@ const Hero = () => {
             <Box>
               <Button
                 as={LinkTo}
-                to="/register"
+                to="/mendaftar"
                 size={{ base: 'md', md: 'lg' }}
                 w={{ base: 'xs', sm: 'full' }}
-                rounded={'full'}
-                colorScheme={'blue'}
                 color={useColorModeValue('white', 'black')}
-                // bg={useColorModeValue('accentLight.400', 'accentDark.400')}
+                bg={useColorModeValue('accentLight.400', 'accentDark.400')}
                 _hover={{
                   bg: useColorModeValue('accentLight.500', 'accentDark.500'),
                   transform: 'translateY(2px)',
@@ -79,7 +76,12 @@ const Hero = () => {
         justify={'center'}
         order={{ base: 1, lg: 2 }}
         pl={{ md: '40px' }}>
-        <Image p={5} alt={''} objectFit={'cover'} src={IMGHero} />
+        <Image
+          p={5}
+          alt={''}
+          objectFit={'cover'}
+          src={`${import.meta.env.VITE_APP_IMAGE_PATH + 'Hero.png'}`}
+        />
       </Flex>
     </Stack>
   );
