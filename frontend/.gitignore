@@ -31,5 +31,4 @@ dist-ssr
 *.gif
 *.svg
 
-
-src/
+.env
