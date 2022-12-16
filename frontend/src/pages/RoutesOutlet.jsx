@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 import ReactTypingEffect from 'react-typing-effect';
 import Footer from '../components/footer/Footer';
 import NavigationBar from '../components/navigationBar/NavigationBar';
+import ScrollToTop from './ScrollToTop';
 
 const RoutesOutlet = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,6 +38,7 @@ const RoutesOutlet = () => {
     <Flex minH={'100vh'} justifyContent={'space-between'} direction={'column'}>
       <NavigationBar />
       <Box my={'auto'} h="full" style={{ overflow: 'hidden' }}>
+        <ScrollToTop />
         <Outlet />
       </Box>
       <Footer />
