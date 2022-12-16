@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init({
+  duration: '800',
+});
 const colors = {
   accentLight: {
     900: '#1A365D',
