@@ -32,3 +32,5 @@ dist-ssr
 *.svg
 
 
+src/assets
+pages/
