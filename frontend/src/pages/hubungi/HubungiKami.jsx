@@ -9,7 +9,6 @@ import {
   Image,
   Container,
 } from '@chakra-ui/react';
-import gambar from '../../assets/hubungikami.png';
 import { useEffect, useState } from 'react';
 import useTimeoutGlobal from '../../store/TimeOut';
 import LoadingFetchEffect from '../../components/loadingEffect/LoadingFetchEffect';
@@ -53,7 +52,11 @@ export default function HubungiKami() {
           rounded={'3xl'}
           boxShadow={'base'}
           {...bgContainer}>
-          <Image src={gambar} alt="" w={64} />
+          <Image
+            src={`${import.meta.env.VITE_APP_IMAGE_PATH + 'hubungikami.png'} `}
+            alt=""
+            w={64}
+          />
           <Stack align={'center'} spacing={2} textAlign="center">
             <Heading textTransform={'uppercase'} fontSize={'3xl'}>
               Hubungi Kami

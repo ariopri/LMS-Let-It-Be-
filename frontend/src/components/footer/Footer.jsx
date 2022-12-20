@@ -1,5 +1,4 @@
 import { Box, Text, Flex, useColorModeValue, Image } from '@chakra-ui/react';
-import logo from '../../assets/logo.svg';
 
 const Footer = () => {
   return (
@@ -20,7 +19,10 @@ const Footer = () => {
           flexGrow: 1,
           ml: 8,
         }}>
-        <Image src={logo} alt="" />
+        <Image
+          src={`${import.meta.env.VITE_APP_IMAGE_PATH + 'logo.svg'} `}
+          alt=""
+        />
       </Flex>
       <Text pt={4} fontSize={'sm'} textAlign={'center'}>
         © 2022 Let It Be. All rights reserved

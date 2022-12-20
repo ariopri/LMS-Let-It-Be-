@@ -19,7 +19,6 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/logo.svg';
 
 const Login = () => {
   const [passwordType, setPasswordType] = useState(false);
@@ -37,7 +36,7 @@ const Login = () => {
       <Stack spacing={8}>
         <Stack spacing={6}>
           <img
-            src={Logo}
+            src={`${import.meta.env.VITE_APP_IMAGE_PATH + 'logo.svg'} `}
             alt="logo"
             style={{
               height: '20',
