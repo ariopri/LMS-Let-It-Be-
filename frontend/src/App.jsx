@@ -1,18 +1,18 @@
-import HomePage from './pages/HomePage';
-import RoutesOutlet from './pages/RoutesOutlet';
 import { Routes, Route } from 'react-router-dom';
-import Informasi from './pages/informasi/Informasi';
-import About from './pages/About';
-import HubungiKami from './pages/hubungi/HubungiKami';
-import CaraMendafatarPengajar from './pages/CaraDaftarPengajar';
-import Login from './pages/login/Login';
-import Daftar from './pages/register/Daftar';
+import LandingPage from './pages/01-LandingPage/LandingPage';
+import RoutesOutlet from './config/RoutesOutlet';
+import About from './pages/06-About/About';
+import HubungiKami from './pages/04-Hubungi/HubungiKami';
+import CaraMendafatarPengajar from './pages/07-DaftarPengajar/CaraDaftarPengajar';
+import Login from './pages/02-Login/Login';
+import Register from './pages/03-Register/Daftar';
+import Informasi from './pages/05-Informasi/Informasi';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<RoutesOutlet />}>
-        <Route index element={<HomePage />} />
+        <Route index element={<LandingPage />} />
         <Route path="informasi" element={<Informasi />} />
         <Route path="tentang" element={<About />} />
         <Route path="hubungi" element={<HubungiKami />} />
@@ -21,8 +21,7 @@ function App() {
           element={<CaraMendafatarPengajar />}
         />
         <Route path="masuk" element={<Login />} />
-        <Route path="mendaftar" element={<Daftar />} />
-        <Route path="register" element={<Daftar />} />
+        <Route path="mendaftar" element={<Register />} />
       </Route>
     </Routes>
   );

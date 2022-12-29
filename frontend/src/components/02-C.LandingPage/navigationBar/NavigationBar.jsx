@@ -12,19 +12,10 @@ import {
   Text,
   Image,
   Heading,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  Avatar,
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, RepeatClockIcon } from '@chakra-ui/icons';
-import { MoonIcon, SunIcon, EditIcon, ArrowBackIcon } from '@chakra-ui/icons';
-import { Link as LinkTo, useNavigate } from 'react-router-dom';
-import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
-import { BASE_URL } from '../../config/api';
-import useLoginState from '../../store/todoLogin';
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { Link as LinkTo } from 'react-router-dom';
 
 const Links = [
   { nama: 'Roadmap', link: '/roadmap' },
@@ -33,37 +24,24 @@ const Links = [
   { nama: 'Informasi', link: '/informasi' },
 ];
 
-function NavLink({ nama, link, onClick }) {
-  return (
-    <Text
-      as={LinkTo}
-      to={link}
-      px={2}
-      py={1}
-      rounded="md"
-      _hover={{
-        bg: useColorModeValue('gray.200', 'gray.700'),
-        textDecoration: 'none',
-      }}
-      onClick={onClick}
-      w="max-content">
-      {nama}
-    </Text>
-  );
-}
+const NavLink = ({ nama, link, onClick }) => (
+  <Text
+    as={LinkTo}
+    to={link}
+    px={2}
+    py={1}
+    rounded={'md'}
+    _hover={{
+      bg: useColorModeValue('gray.200', 'gray.700'),
+      textDecoration: 'none',
+    }}
+    onClick={onClick}
+    w="max-content">
+    {nama}
+  </Text>
+);
 
-const NavigationBar = () => {
-  const [user, setUser] = useState({});
-  const navigate = useNavigate();
-  const {
-    isLoggedIn,
-    setIsLoggedOut,
-    loggedAs,
-    setLoggedAs,
-    setUserId,
-    userId,
-  } = useLoginState();
-
+export default function NavigationBar() {
   const bgnavbar = useColorModeValue(
     'rgba(255, 255, 255, 0.8)',
     'rgba(26, 32, 44, 0.8)'
@@ -77,29 +55,6 @@ const NavigationBar = () => {
       bg: useColorModeValue('accentLight.500', 'accentDark.500'),
     },
   };
-
-  const HandleLogOut = () => {
-    setLoggedAs('');
-    setUserId('');
-    setIsLoggedOut();
-    navigate('/');
-    useLoginState.persist.clearStorage();
-    localStorage.removeItem('tokenId');
-  };
-
-  const getUser = useCallback(async () => {
-    const headers = {
-      Authorization: 'Bearer ' + localStorage.getItem('tokenId'),
-    };
-    const res = await axios.get(`${BASE_URL}/${loggedAs}/${userId}`, {
-      headers,
-    });
-    setUser(res.data);
-  }, [userId, loggedAs]);
-
-  useEffect(() => {
-    getUser();
-  }, [getUser]);
 
   return (
     <Box
@@ -128,21 +83,20 @@ const NavigationBar = () => {
           <HStack spacing={8} alignItems={'center'}>
             <Box>
               <HStack as={LinkTo} to="/" alignItems={'center'}>
-                <Image src="" alt="" />
+                <Image
+                  src={`${import.meta.env.VITE_APP_IMAGE_PATH + 'logo.svg'}`}
+                  alt=""
+                />
                 <Heading
                   as="h3"
                   size="md"
                   fontWeight={500}
                   display={{ base: 'none', sm: 'block' }}>
                   <Text
-                    color={useColorModeValue(
-                      'accentLight.400',
-                      'accentDark.400'
-                    )}
+                    color={useColorModeValue('black', 'white')}
                     as={'span'}
                     position={'relative'}
                     _after={{
-                      content: "''",
                       width: 'full',
                       height: '15%',
                       position: 'absolute',
@@ -152,12 +106,9 @@ const NavigationBar = () => {
                         'accentLight.100',
                         'accentDark.900'
                       ),
-                      zIndex: -1,
                     }}>
-                    pusat
+                    Let It Be
                   </Text>
-                  <br />
-                  ngoding
                 </Heading>
               </HStack>
             </Box>
@@ -168,9 +119,6 @@ const NavigationBar = () => {
               spacing={4}
               display={{ base: 'none', md: 'flex' }}
               mr={4}>
-              {isLoggedIn ? (
-                <NavLink nama="Dashboard" link="dashboard" onClick={onClose} />
-              ) : null}
               {Links.map(link => (
                 <NavLink key={link.nama} {...link} />
               ))}
@@ -182,49 +130,10 @@ const NavigationBar = () => {
               mr={4}
               onClick={toggleColorMode}
             />
-            {isLoggedIn ? (
-              <Flex alignItems={'center'}>
-                <Menu>
-                  <MenuButton
-                    as={Button}
-                    rounded={'full'}
-                    variant={'link'}
-                    cursor={'pointer'}
-                    minW={0}>
-                    <Avatar
-                      size={'sm'}
-                      name={`${user.nama_depan} ${user.nama_belakang}`}
-                      src={user.avatar}
-                    />
-                  </MenuButton>
-                  <MenuList>
-                    {loggedAs === 'admin' ? null : (
-                      <MenuItem
-                        icon={<EditIcon />}
-                        as={LinkTo}
-                        to="dashboard/akun">
-                        Akun Saya
-                      </MenuItem>
-                    )}
-                    <MenuItem
-                      as={LinkTo}
-                      to={'dashboard/transaksi'}
-                      icon={<RepeatClockIcon />}>
-                      Riwayat Transaksi
-                    </MenuItem>
-                    <MenuItem
-                      icon={<ArrowBackIcon />}
-                      onClick={() => HandleLogOut()}>
-                      Keluar
-                    </MenuItem>
-                  </MenuList>
-                </Menu>
-              </Flex>
-            ) : (
-              <Button as={LinkTo} to="/masuk" size={'sm'} {...navbarSet}>
-                MASUK
-              </Button>
-            )}
+
+            <Button as={LinkTo} to="/masuk" size={'sm'} {...navbarSet}>
+              MASUK
+            </Button>
           </Flex>
         </Flex>
       </Container>
@@ -238,9 +147,6 @@ const NavigationBar = () => {
           maxW="7xl"
           p={4}>
           <Stack as={'nav'} spacing={4}>
-            {isLoggedIn ? (
-              <NavLink nama="Dashboard" link="dashboard" onClick={onClose} />
-            ) : null}
             {Links.map(link => (
               <NavLink key={link.nama} {...link} onClick={onClose} />
             ))}
@@ -249,6 +155,4 @@ const NavigationBar = () => {
       ) : null}
     </Box>
   );
-};
-
-export default NavigationBar;
+}

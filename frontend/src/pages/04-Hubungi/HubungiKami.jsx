@@ -10,8 +10,8 @@ import {
   Container,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import Loading from '../../components/01-Reusable/LoadingEffect/LoadingFetchEffect';
 import useTimeoutGlobal from '../../store/TimeOut';
-import LoadingFetchEffect from '../../components/loadingEffect/LoadingFetchEffect';
 import OpenWhatsApp from './OpenWhatsapp';
 
 export default function HubungiKami() {
@@ -41,7 +41,7 @@ export default function HubungiKami() {
   const bgContainer = { bg: useColorModeValue('white', 'gray.700') };
 
   return isLoading ? (
-    <LoadingFetchEffect />
+    <Loading />
   ) : (
     <Container maxW={'7xl'} my={5} data-aos="fade-up">
       <Flex align={'center'} justify={'center'}>

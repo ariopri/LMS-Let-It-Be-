@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import useTimeoutGlobal from '../../store/TimeOut';
-import LoadingFetchEffect from '../../components/01-Reusable/loadingEffect/LoadingFetchEffect';
+import Loading from '../../components/01-Reusable/LoadingEffect/LoadingFetchEffect';
 
 const data = [
   {
@@ -104,7 +104,7 @@ const About = () => {
     );
   };
   return isLoading ? (
-    <LoadingFetchEffect />
+    <Loading />
   ) : (
     <Stack as={Container} maxW={'7xl'} pt={4} pb={4} data-aos="fade-up">
       <Heading

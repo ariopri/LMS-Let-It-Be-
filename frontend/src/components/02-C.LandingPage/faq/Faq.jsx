@@ -16,18 +16,27 @@ import axios from 'axios';
 
 export default function FAQ() {
   const [faqList, setFaq] = useState([]);
+  const [isloading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(
-        'https://6382a6221ada9475c8f10b2d.mockapi.io/FAQ'
-      );
-      setFaq(result.data);
+      try {
+        const result = await axios.get(
+          `${import.meta.env.VITE_APP_URL + 'FAQ'}`
+        );
+        setFaq(result.data);
+      } catch {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchData();
   }, []);
 
-  return (
+  return isloading ? (
+    <div>Loading...</div>
+  ) : (
     <Stack
       as={Container}
       mt={20}

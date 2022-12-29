@@ -8,8 +8,8 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import LoadingFetchEffect from '../../components/01-Reusable/loadingEffect/LoadingFetchEffect';
 import axios from 'axios';
+import Loading from '../../components/01-Reusable/LoadingEffect/LoadingFetchEffect';
 
 export default function Informasi() {
   const [informasi, setInformasi] = useState([]);
@@ -66,7 +66,7 @@ export default function Informasi() {
   };
 
   return isLoading ? (
-    <LoadingFetchEffect />
+    <Loading />
   ) : (
     <Container maxW="7xl" data-aos="fade-up" pt={4}>
       <Heading

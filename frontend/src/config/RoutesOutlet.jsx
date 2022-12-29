@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import ReactTypingEffect from 'react-typing-effect';
 import Footer from '../components/02-C.LandingPage/footer/Footer';
-import NavigationBar from '../components/navigationBar/NavigationBar';
+import NavigationBar from '../components/02-C.LandingPage/navigationBar/NavigationBar';
 import ScrollToTop from './ScrollToTop';
 
 const RoutesOutlet = () => {

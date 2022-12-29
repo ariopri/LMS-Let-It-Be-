@@ -5,7 +5,7 @@ import Hero from '../../components/02-C.LandingPage/hero/Hero';
 import Testimonials from '../../components/02-C.LandingPage/testimoni/Testimoni';
 import Faq from '../../components/02-C.LandingPage/faq/Faq';
 
-const HomePage = () => {
+const LandingPage = () => {
   return (
     <div>
       <Hero />
@@ -17,4 +17,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default LandingPage;

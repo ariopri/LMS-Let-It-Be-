@@ -9,13 +9,12 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import useTimeoutGlobal from '../../store/TimeOut';
-import hero from '../assets/mendaftarmentor/hero.png';
-import mendaftarpengajar1 from '../assets/mendaftarmentor/1.png';
-import mendaftarpengajar2 from '../assets/mendaftarmentor/2.png';
-import mendaftarpengajar3 from '../assets/mendaftarmentor/3.png';
-import mendaftarpengajar4 from '../assets/mendaftarmentor/4.png';
-import LoadingFetchEffect from '../../components/01-Reusable/loadingEffect/LoadingFetchEffect';
+import mendaftarpengajar1 from '../../assets/mendaftarmentor/1.png';
+import mendaftarpengajar2 from '../../assets/mendaftarmentor/2.png';
+import mendaftarpengajar3 from '../../assets/mendaftarmentor/3.png';
+import mendaftarpengajar4 from '../../assets/mendaftarmentor/4.png';
 import { useEffect, useState } from 'react';
+import Loading from '../../components/01-Reusable/LoadingEffect/LoadingFetchEffect';
 
 const syarats = [
   {
@@ -111,7 +110,7 @@ const CaraMendafatarPengajar = () => {
   };
 
   return isLoading ? (
-    <LoadingFetchEffect />
+    <Loading />
   ) : (
     <Container maxW={'7xl'} data-aos="fade-up">
       <Stack py={3} spacing={10}>
@@ -127,7 +126,10 @@ const CaraMendafatarPengajar = () => {
               dari kami!
             </Text>
           </Stack>
-          <Img src={hero} w="2xl" />
+          <Img
+            src={`${import.meta.env.VITE_APP_IMAGE_PATH + 'hero.png'} `}
+            w="2xl"
+          />
         </Stack>
         <Stack>
           <Stack borderWidth={1} p={10} borderRadius={20}>
