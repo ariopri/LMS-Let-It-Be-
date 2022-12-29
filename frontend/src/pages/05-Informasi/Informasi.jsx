@@ -8,7 +8,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import LoadingFetchEffect from '../../components/loadingEffect/LoadingFetchEffect';
+import LoadingFetchEffect from '../../components/01-Reusable/loadingEffect/LoadingFetchEffect';
 import axios from 'axios';
 
 export default function Informasi() {

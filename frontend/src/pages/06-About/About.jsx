@@ -10,8 +10,8 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import useTimeoutGlobal from '../store/TimeOut';
-import LoadingFetchEffect from '../components/loadingEffect/LoadingFetchEffect';
+import useTimeoutGlobal from '../../store/TimeOut';
+import LoadingFetchEffect from '../../components/01-Reusable/loadingEffect/LoadingFetchEffect';
 
 const data = [
   {

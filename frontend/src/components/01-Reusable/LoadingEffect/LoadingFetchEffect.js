@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Stack } from '@chakra-ui/react';
+
 const SwappingSquare = styled.div`
   height: ${props => props.size}px;
   width: ${props => props.size}px;
@@ -87,25 +88,7 @@ const LoadingAnim = ({
 
 export default function Loading() {
   return (
-    <Stack
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-      height="100vh"
-      width="100vw"
-      spacing={4}
-      position="fixed"
-      top="0"
-      left="0"
-      zIndex="9999"
-      overflow="hidden"
-      textTransform="uppercase"
-      letterSpacing="0.1em"
-      padding="0 1em"
-      pointerEvents="none"
-      userSelect="none"
-      opacity="0.8"
-      transition="opacity 0.3s ease-in-out">
+    <Stack textAlign="center" align="center" justify="center">
       <LoadingAnim />
     </Stack>
   );
