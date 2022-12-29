@@ -5,6 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 AOS.init({
   duration: '800',
 });
@@ -39,7 +41,9 @@ const theme = extendTheme({ colors });
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <ChakraProvider theme={theme}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ChakraProvider>
   </BrowserRouter>
 );
