@@ -7,6 +7,7 @@ import CaraMendafatarPengajar from './pages/07-DaftarPengajar/CaraDaftarPengajar
 import Login from './pages/02-Login/Login';
 import Register from './pages/03-Register/Daftar';
 import Informasi from './pages/05-Informasi/Informasi';
+import StudentDashboard from './pages/08-StudentDashboard/StudentDashboard';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         />
         <Route path="masuk" element={<Login />} />
         <Route path="mendaftar" element={<Register />} />
+        <Route path="" element={<StudentDashboard/>} />
       </Route>
     </Routes>
   );
