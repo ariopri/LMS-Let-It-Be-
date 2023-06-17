@@ -1,0 +1,62 @@
+
+create table users (
+    id int primary key auto_increment,
+    firstname varchar(255) not null,
+    lastname varchar(255) not null,
+    username varchar(255) not null,
+    email varchar(255) not null,
+    password varchar(255) not null,
+    role enum ('admin', 'user') default 'user',
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp on update current_timestamp
+)engine=InnoDB default charset=utf8mb4;
+
+alter table users add unique (username);
+alter table users add unique (email);
+
+desc users;
+
+create table subjects (
+    id int primary key auto_increment,
+    name varchar(255) not null unique,
+    created_at timestamp default current_timestamp
+)engine=InnoDB default charset=utf8mb4;
+
+alter table subjects rename column name to subject_name;
+
+create table classes (
+    id int primary key auto_increment,
+    class_name varchar(255) not null unique,
+    subject_id int not null,
+    constraint fk_classes_subjects foreign key (subject_id) references subjects(id),
+    created_at timestamp default current_timestamp
+)engine=InnoDB default charset=utf8mb4;
+
+alter table classes add column description varchar(255) not null;
+
+create table subtopics (
+    id int primary key auto_increment,
+    subtopic_name varchar(255) not null unique,
+    description varchar(255) not null,
+    class_id int not null,
+    constraint fk_subtopics_classes foreign key (class_id) references classes(id),
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp on update current_timestamp
+)engine=InnoDB default charset=utf8mb4;
+
+create table videos(
+    video_id varchar(255) not null primary key,
+    video_name varchar(255) not null unique,
+    thumbnail varchar(255) not null,
+    description TEXT,
+    subtopic_id int not null,
+    constraint fk_videos_subtopics foreign key (subtopic_id) references subtopics(id),
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp on update current_timestamp
+)engine=InnoDB default charset=utf8mb4;
+
+show tables;
+
+
+show tables ;
+
