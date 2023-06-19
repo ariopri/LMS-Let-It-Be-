@@ -20,8 +20,8 @@ func NewUserRepository(db *sql.DB) UserRepository {
 
 func (u *UserRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, user domain.User) domain.User {
 	//TODO implement me
-	SQL := "INSERT INTO users (firstname, lastname, username, password) VALUES (?, ?, ?, ?)"
-	result, err := tx.ExecContext(ctx, SQL, user.FirstName, user.LastName, user.Username, user.Password)
+	SQL := "INSERT INTO users (firstname, lastname, username, email, password) VALUES (?, ?, ?, ?, ?)"
+	result, err := tx.ExecContext(ctx, SQL, user.FirstName, user.LastName, user.Username, user.Email, user.Password)
 	helper.PanicIfError(err)
 
 	id, err := result.LastInsertId()
@@ -49,7 +49,7 @@ func (u *UserRepositoryImpl) Delete(ctx context.Context, tx *sql.Tx, user domain
 }
 
 func (u *UserRepositoryImpl) FindByID(ctx context.Context, tx *sql.Tx, userID int) (domain.User, error) {
-	SQL := "SELECT id, firstname,lastname, username, password, created_at, updated_at FROM users WHERE id = ?"
+	SQL := "SELECT id, firstname,lastname, username, email, password, created_at, updated_at FROM users WHERE id = ?"
 	var user domain.User
 
 	var rows *sql.Rows
@@ -65,7 +65,7 @@ func (u *UserRepositoryImpl) FindByID(ctx context.Context, tx *sql.Tx, userID in
 	defer rows.Close()
 
 	if rows.Next() {
-		err = rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Username, &user.Password, &user.CreatedAt, &user.UpdatedAt)
+		err = rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Username, &user.Email, &user.Password, &user.CreatedAt, &user.UpdatedAt)
 		if err != nil {
 			return user, err
 		}
@@ -94,14 +94,14 @@ func (u *UserRepositoryImpl) FindByID(ctx context.Context, tx *sql.Tx, userID in
 
 func (u *UserRepositoryImpl) FindByUsername(ctx context.Context, tx *sql.Tx, username string) (domain.User, error) {
 	//TODO implement me
-	SQL := "SELECT id,firstname,lastname, username, password, created_at, updated_at FROM users WHERE username = ?"
+	SQL := "SELECT id,firstname,lastname, username, email, password, created_at, updated_at FROM users WHERE username = ?"
 	rows, err := tx.QueryContext(ctx, SQL, username)
 	helper.PanicIfError(err)
 	defer rows.Close()
 
 	user := domain.User{}
 	if rows.Next() {
-		err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Username, &user.Password, &user.CreatedAt, &user.UpdatedAt)
+		err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Username, &user.Email, &user.Password, &user.CreatedAt, &user.UpdatedAt)
 		helper.PanicIfError(err)
 		return user, nil
 	} else {
@@ -111,7 +111,7 @@ func (u *UserRepositoryImpl) FindByUsername(ctx context.Context, tx *sql.Tx, use
 
 func (u *UserRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domain.User {
 	//TODO implement me
-	SQL := "SELECT id, firstname, lastname, username, password, created_at, updated_at FROM users"
+	SQL := "SELECT id, firstname, lastname, username, email, password, created_at, updated_at FROM users"
 	rows, err := u.db.QueryContext(ctx, SQL) // Menggunakan u.db.QueryContext
 	helper.PanicIfError(err)
 	defer rows.Close()
@@ -119,7 +119,7 @@ func (u *UserRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domain.U
 	var users []domain.User
 	for rows.Next() {
 		user := domain.User{}
-		err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Username, &user.Password, &user.CreatedAt, &user.UpdatedAt)
+		err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Username, &user.Email, &user.Password, &user.CreatedAt, &user.UpdatedAt)
 		helper.PanicIfError(err)
 		users = append(users, user)
 	}

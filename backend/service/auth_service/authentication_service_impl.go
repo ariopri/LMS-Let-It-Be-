@@ -65,8 +65,8 @@ func (auth *AuthenticationServiceImpl) Register(ctx context.Context, request req
 		FirstName: request.FirstName,
 		LastName:  request.LastName,
 		Username:  request.Username,
+		Email:     request.Email,
 		Password:  hashedPassword,
-		CreatedAt: request.CreatedAt,
 	}
 
 	auth.UserRepository.Save(ctx, tx, user)
