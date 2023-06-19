@@ -7,5 +7,5 @@ import (
 
 type AuthenticationService interface {
 	Login(ctx context.Context, request request.LoginCreateRequest) (string, error)
-	Register(ctx context.Context, createRequest request.UserCreateRequest)
+	Register(ctx context.Context, request request.UserCreateRequest)
 }

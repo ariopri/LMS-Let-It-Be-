@@ -19,7 +19,7 @@ type AuthenticationServiceImpl struct {
 	validate       *validator.Validate
 }
 
-func NewAuthenticationService(userRepository user_repository.UserRepository, DB *sql.DB, validate *validator.Validate) *AuthenticationServiceImpl {
+func NewAuthenticationService(userRepository user_repository.UserRepository, DB *sql.DB, validate *validator.Validate) AuthenticationService {
 	return &AuthenticationServiceImpl{UserRepository: userRepository, DB: DB, validate: validate}
 }
 
@@ -43,7 +43,7 @@ func (auth *AuthenticationServiceImpl) Login(ctx context.Context, request reques
 		return "", fmt.Errorf("password not match")
 	}
 
-	token, err_token := utils.GenerateToken(config.TokenExpiresIn, new_user.Id, request.Password)
+	token, err_token := utils.GenerateToken(config.TokenExpiresIn, new_user.Id, config.TokenSecret)
 	helper.PanicIfError(err_token)
 
 	return token, nil
@@ -62,12 +62,11 @@ func (auth *AuthenticationServiceImpl) Register(ctx context.Context, request req
 	helper.PanicIfError(err)
 
 	user := domain.User{
-		FirstName: request.Firstname,
-		LastName:  request.Lastname,
-		Email:     request.Email,
+		FirstName: request.FirstName,
+		LastName:  request.LastName,
 		Username:  request.Username,
+		Email:     request.Email,
 		Password:  hashedPassword,
-		CreatedAt: request.CreatedAt,
 	}
 
 	auth.UserRepository.Save(ctx, tx, user)

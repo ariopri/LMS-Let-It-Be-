@@ -18,10 +18,10 @@ func main() {
 	if err != nil {
 		log.Fatal("Could not load config file", err)
 	}
-	db := config.ConnectionDB(loadConfig)
+	db := config.ConnectionDB(&loadConfig)
 	validate := validator.New()
 
-	userRepository := user_repository.NewUserRepository()
+	userRepository := user_repository.NewUserRepository(db)
 	authenticationService := auth_service.NewAuthenticationService(userRepository, db, validate)
 	authenticationController := controller.NewAuthenticationController(authenticationService)
 
@@ -30,7 +30,7 @@ func main() {
 	//authenticationRouter := route.Group("/auth")
 	//authenticationRouter.POST("/login", authenticationController.Login)
 	//authenticationRouter.POST("/register", authenticationController.Register)
-	routes := router.NewRouter(userRepository, authenticationController)
+	routes := router.NewRouter(authenticationController)
 	errService := routes.Run(":8080")
 	helper.PanicIfError(errService)
 }

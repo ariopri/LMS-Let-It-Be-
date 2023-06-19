@@ -2,16 +2,23 @@ package router
 
 import (
 	"github.com/ariopri/MassiveProject/controller"
-	"github.com/ariopri/MassiveProject/repository/user_repository"
 	"github.com/gin-gonic/gin"
 )
 
-func NewRouter(repository user_repository.UserRepository, controller *controller.AuthenticationController) *gin.Engine {
-	router := gin.Default()
-	router.Group("/api")
-	authenticationRouter := router.Group("/auth")
-	authenticationRouter.POST("/login", controller.Login)
-	authenticationRouter.POST("/register", controller.Register)
+func NewRouter(authenticationController *controller.AuthenticationController) *gin.Engine {
+	service := gin.Default()
 
-	return router
+	service.GET("", func(ctx *gin.Context) {
+		ctx.JSON(200, gin.H{
+			"message": "",
+		})
+	})
+
+	router := service.Group("/api")
+	authenticationRouter := router.Group("/auth")
+	authenticationRouter.POST("/login", authenticationController.Login)
+	authenticationRouter.POST("/register", authenticationController.Register)
+
+	return service
+
 }
