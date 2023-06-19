@@ -1,6 +1,7 @@
 package config
 
 import (
+	"github.com/ariopri/MassiveProject/helper"
 	"github.com/spf13/viper"
 	"time"
 )
@@ -24,9 +25,8 @@ func LoadConfig(path string) (config Config, err error) {
 	viper.AutomaticEnv()
 
 	err = viper.ReadInConfig()
-	if err != nil {
-		return
-	}
+	helper.PanicIfError(err)
 	err = viper.Unmarshal(&config)
-	return
+
+	return config, err
 }

@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func ConnectionDB(config Config) *sql.DB {
+func ConnectionDB(config *Config) *sql.DB {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", config.DBUser, config.DBPassword, config.DBHost, config.DBPort, config.DBName)
 	db, err := sql.Open("mysql", dsn)
 	helper.PanicIfError(err)
