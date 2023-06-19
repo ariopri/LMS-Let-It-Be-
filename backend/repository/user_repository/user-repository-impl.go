@@ -9,11 +9,10 @@ import (
 )
 
 type UserRepositoryImpl struct {
-	db *sql.DB
 }
 
-func NewUserRepositoryImpl(db *sql.DB) *UserRepositoryImpl {
-	return &UserRepositoryImpl{db: db}
+func NewUserRepository() UserRepository {
+	return &UserRepositoryImpl{}
 }
 
 func (u *UserRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, user domain.User) domain.User {

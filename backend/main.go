@@ -1,22 +1,36 @@
 package main
 
 import (
+	"github.com/ariopri/MassiveProject/config"
+	"github.com/ariopri/MassiveProject/controller"
 	"github.com/ariopri/MassiveProject/helper"
-	"github.com/gin-gonic/gin"
+	"github.com/ariopri/MassiveProject/repository/user_repository"
+	"github.com/ariopri/MassiveProject/router"
+	"github.com/ariopri/MassiveProject/service/auth_service"
+	"github.com/go-playground/validator/v10"
+	_ "github.com/go-sql-driver/mysql"
+	"log"
 )
 
 func main() {
-	app := gin.Default()
 
-	route := app
+	loadConfig, err := config.LoadConfig(".")
+	if err != nil {
+		log.Fatal("Could not load config file", err)
+	}
+	db := config.ConnectionDB(loadConfig)
+	validate := validator.New()
 
-	route.GET("", func(ctx *gin.Context) {
-		ctx.JSON(200, gin.H{
-			"message": "Hello World",
-		})
-		return
-	})
+	userRepository := user_repository.NewUserRepository()
+	authenticationService := auth_service.NewAuthenticationService(userRepository, db, validate)
+	authenticationController := controller.NewAuthenticationController(authenticationService)
 
-	err := app.Run(":8000")
-	helper.PanicIfError(err)
+	//route := gin.Default()
+	//route.Group("/api")
+	//authenticationRouter := route.Group("/auth")
+	//authenticationRouter.POST("/login", authenticationController.Login)
+	//authenticationRouter.POST("/register", authenticationController.Register)
+	routes := router.NewRouter(userRepository, authenticationController)
+	errService := routes.Run(":8080")
+	helper.PanicIfError(errService)
 }

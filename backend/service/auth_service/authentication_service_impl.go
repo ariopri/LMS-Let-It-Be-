@@ -19,6 +19,10 @@ type AuthenticationServiceImpl struct {
 	validate       *validator.Validate
 }
 
+func NewAuthenticationService(userRepository user_repository.UserRepository, DB *sql.DB, validate *validator.Validate) *AuthenticationServiceImpl {
+	return &AuthenticationServiceImpl{UserRepository: userRepository, DB: DB, validate: validate}
+}
+
 func (auth *AuthenticationServiceImpl) Login(ctx context.Context, request request.LoginCreateRequest) (string, error) {
 	//TODO implement me
 	err := auth.validate.Struct(request)
