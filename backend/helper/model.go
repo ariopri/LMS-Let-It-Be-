@@ -8,3 +8,10 @@ func ToLoginResponse(token string) response.LoginResponse {
 		Token:     token,
 	}
 }
+
+func ToRegisterResponse(token string, role string) response.RegisterResponse {
+	return response.RegisterResponse{
+		Token: token,
+		Role:  role,
+	}
+}

@@ -19,7 +19,7 @@ func NewAuthenticationController(authenticationService auth_service.Authenticati
 
 func (controller *AuthenticationController) Login(ctx *gin.Context) {
 	loginRequest := request.LoginCreateRequest{}
-	err := ctx.ShouldBind(&loginRequest)
+	err := ctx.ShouldBindJSON(&loginRequest)
 	helper.PanicIfError(err)
 
 	token, err_token := controller.authenticationService.Login(ctx, loginRequest)
@@ -36,23 +36,25 @@ func (controller *AuthenticationController) Login(ctx *gin.Context) {
 	resp := helper.ToLoginResponse(token)
 
 	webResponse := response.WebResponse{
-		Code:   http.StatusOK,
-		Status: "OK",
-		Data:   resp,
+		Code:    http.StatusOK,
+		Status:  "OK",
+		Message: "success login",
+		Data:    resp,
 	}
 	ctx.JSON(http.StatusOK, webResponse)
 }
 
 func (controller *AuthenticationController) Register(ctx *gin.Context) {
 	createRequest := request.UserCreateRequest{}
-	err := ctx.ShouldBind(&createRequest)
+	err := ctx.ShouldBindJSON(&createRequest)
 	helper.PanicIfError(err)
 
 	controller.authenticationService.Register(ctx, createRequest)
 
 	webResponse := response.WebResponse{
-		Code:   http.StatusOK,
-		Status: "OK",
+		Code:    http.StatusOK,
+		Status:  "OK",
+		Message: "success register",
 	}
 	ctx.JSON(http.StatusOK, webResponse)
 }

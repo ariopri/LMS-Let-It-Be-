@@ -9,16 +9,19 @@ import (
 )
 
 type UserRepositoryImpl struct {
+	db *sql.DB
 }
 
-func NewUserRepository() UserRepository {
-	return &UserRepositoryImpl{}
+func NewUserRepository(db *sql.DB) UserRepository {
+	return &UserRepositoryImpl{
+		db: db,
+	}
 }
 
 func (u *UserRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, user domain.User) domain.User {
 	//TODO implement me
-	SQL := "INSERT INTO users (firstname, lastname, username, email, password, role) VALUES (?, ?, ?, ?, ?, ?)"
-	result, err := tx.ExecContext(ctx, SQL, user.FirstName, user.LastName, user.Username, user.Email, user.Password, user.Role)
+	SQL := "INSERT INTO users (firstname, lastname, username, email, password, role, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+	result, err := tx.ExecContext(ctx, SQL, user.FirstName, user.LastName, user.UserName, user.Email, user.Password, user.Role, &user.CreatedAt, &user.UpdatedAt)
 	helper.PanicIfError(err)
 
 	id, err := result.LastInsertId()
@@ -31,7 +34,7 @@ func (u *UserRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, user domain.U
 func (u *UserRepositoryImpl) Update(ctx context.Context, tx *sql.Tx, user domain.User) domain.User {
 	//TODO implement me
 	SQL := "UPDATE users SET firstname = ?, lastname = ?, username = ?, email = ?, password = ?, role = ?, updated_at = ? WHERE id = ?"
-	_, err := tx.ExecContext(ctx, SQL, user.FirstName, user.LastName, user.Username, user.Email, user.Password, user.Role, user.UpdatedAt, user.Id)
+	_, err := tx.ExecContext(ctx, SQL, user.FirstName, user.LastName, user.UserName, user.Email, user.Password, user.Role, user.UpdatedAt, user.Id)
 	helper.PanicIfError(err)
 
 	return user
@@ -60,7 +63,7 @@ func (u *UserRepositoryImpl) FindById(ctx context.Context, tx *sql.Tx, userId in
 			&user.Id,
 			&user.FirstName,
 			&user.LastName,
-			&user.Username,
+			&user.UserName,
 			&user.Email,
 			&user.Password,
 			&user.Role,
@@ -87,7 +90,7 @@ func (u *UserRepositoryImpl) FindByUsername(ctx context.Context, tx *sql.Tx, use
 			&user.Id,
 			&user.FirstName,
 			&user.LastName,
-			&user.Username,
+			&user.UserName,
 			&user.Email,
 			&user.Password,
 			&user.Role,
@@ -103,7 +106,29 @@ func (u *UserRepositoryImpl) FindByUsername(ctx context.Context, tx *sql.Tx, use
 
 func (u *UserRepositoryImpl) FindByEmail(ctx context.Context, tx *sql.Tx, email string) (domain.User, error) {
 	//TODO implement me
-	panic("implement me")
+	SQL := "SELECT id, firstname, lastname, username, email, password, role, created_at, updated_at FROM users WHERE email = ?"
+	rows, err := tx.QueryContext(ctx, SQL, email)
+	helper.PanicIfError(err)
+	defer rows.Close()
+
+	user := domain.User{}
+	if rows.Next() {
+		err := rows.Scan(
+			&user.Id,
+			&user.FirstName,
+			&user.LastName,
+			&user.UserName,
+			&user.Email,
+			&user.Password,
+			&user.Role,
+			&user.CreatedAt,
+			&user.UpdatedAt,
+		)
+		helper.PanicIfError(err)
+		return user, nil
+	} else {
+		return user, errors.New("user not found")
+	}
 }
 
 func (u *UserRepositoryImpl) FindByRole(ctx context.Context, tx *sql.Tx, role string) ([]domain.User, error) {
@@ -116,7 +141,7 @@ func (u *UserRepositoryImpl) FindByRole(ctx context.Context, tx *sql.Tx, role st
 	var users []domain.User
 	for rows.Next() {
 		var user domain.User
-		err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Username, &user.Email, &user.Password, &user.Role, &user.CreatedAt, &user.UpdatedAt)
+		err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.UserName, &user.Email, &user.Password, &user.Role, &user.CreatedAt, &user.UpdatedAt)
 		helper.PanicIfError(err)
 		users = append(users, user)
 	}
@@ -133,7 +158,7 @@ func (u *UserRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domain.U
 	var users []domain.User
 	for rows.Next() {
 		user := domain.User{}
-		err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Username, &user.Email, &user.Password, &user.Role, &user.CreatedAt, &user.UpdatedAt)
+		err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.UserName, &user.Email, &user.Password, &user.Role, &user.CreatedAt, &user.UpdatedAt)
 		helper.PanicIfError(err)
 		users = append(users, user)
 	}
