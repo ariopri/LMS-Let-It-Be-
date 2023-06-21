@@ -32,7 +32,16 @@ func (controller *AuthenticationController) Login(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, webResponse)
 		return
 	}
-	resp := helper.ToLoginResponse(token)
+
+	var role string
+	// Tentukan peran pengguna berdasarkan logika bisnis Anda
+	if loginRequest.Username == "admin" {
+		role = "admin"
+	} else {
+		role = "user"
+	}
+
+	resp := helper.ToLoginResponse(token, role)
 
 	webResponse := response.WebResponse{
 		Code:    http.StatusOK,
