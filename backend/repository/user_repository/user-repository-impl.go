@@ -111,7 +111,7 @@ func (u *UserRepositoryImpl) FindByUsername(ctx context.Context, tx *sql.Tx, use
 
 func (u *UserRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domain.User {
 	//TODO implement me
-	SQL := "SELECT id, firstname, lastname, username, password, created_at, updated_at FROM users"
+	SQL := "SELECT id, firstname, lastname, username, password, role, created_at, updated_at FROM users"
 	rows, err := u.db.QueryContext(ctx, SQL) // Menggunakan u.db.QueryContext
 	helper.PanicIfError(err)
 	defer rows.Close()
@@ -119,7 +119,7 @@ func (u *UserRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domain.U
 	var users []domain.User
 	for rows.Next() {
 		user := domain.User{}
-		err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Username, &user.Password, &user.CreatedAt, &user.UpdatedAt)
+		err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Username, &user.Password, &user.Role, &user.CreatedAt, &user.UpdatedAt)
 		helper.PanicIfError(err)
 		users = append(users, user)
 	}
