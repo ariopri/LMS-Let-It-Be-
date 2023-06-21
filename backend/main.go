@@ -24,13 +24,9 @@ func main() {
 	userRepository := user_repository.NewUserRepository(db)
 	authenticationService := auth_service.NewAuthenticationService(userRepository, db, validate)
 	authenticationController := controller.NewAuthenticationController(authenticationService)
+	userController := controller.NewUserController(userRepository)
 
-	//route := gin.Default()
-	//route.Group("/api")
-	//authenticationRouter := route.Group("/auth")
-	//authenticationRouter.POST("/login", authenticationController.Login)
-	//authenticationRouter.POST("/register", authenticationController.Register)
-	routes := router.NewRouter(authenticationController)
+	routes := router.NewRouter(userRepository, authenticationController, userController)
 	errService := routes.Run(":8080")
 	helper.PanicIfError(errService)
 }
