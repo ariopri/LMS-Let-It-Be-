@@ -22,7 +22,7 @@ func NewRouter(userRepository user_repository.UserRepository, authenticationCont
 	authenticationRouter.POST("/register", authenticationController.Register)
 
 	userRouter := router.Group("/user")
-	userRouter.GET("", middlewares.DeserializeUser(userRepository), userController.GetUser)
+	userRouter.GET("", middlewares.DeserializeUser(userRepository), userController.GetAllUser)
 	userRouter.GET("/:id", middlewares.DeserializeUser(userRepository), userController.GetUserById)
 
 	return service
