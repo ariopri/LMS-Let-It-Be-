@@ -16,7 +16,7 @@ func NewUserController(userRepository user_repository.UserRepository) *UserContr
 	return &UserController{userRepository: userRepository}
 }
 
-func (controller *UserController) GetUser(ctx *gin.Context) {
+func (controller *UserController) GetAllUser(ctx *gin.Context) {
 	//TODO implement me
 	user := controller.userRepository.FindAll(ctx, nil)
 	webResponse := response.WebResponse{
