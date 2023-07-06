@@ -40,25 +40,67 @@ func (s *SubjectsServiceImpl) Create(ctx context.Context, request request.Subjec
 
 func (s *SubjectsServiceImpl) Update(ctx context.Context, request request.SubjectUpdateRequest) response.SubjectsResponse {
 	//TODO implement me
-	panic("implement me")
+	err := s.Validate.Struct(request)
+	helper.PanicIfError(err)
+
+	tx, err := s.DB.Begin()
+	helper.PanicIfError(err)
+	defer helper.CommitOrRollback(tx)
+
+	subject, err := s.SubjectsRepository.FindByID(ctx, tx, request.Id)
+	helper.PanicIfError(err)
+
+	subject.SubjectName = request.SubjectName
+
+	subject = s.SubjectsRepository.Update(ctx, tx, subject)
+
+	return helper.ToSubjectsResponse(subject)
 }
 
 func (s *SubjectsServiceImpl) Delete(ctx context.Context, subjectsId int) {
 	//TODO implement me
-	panic("implement me")
+	tx, err := s.DB.Begin()
+	helper.PanicIfError(err)
+	defer helper.CommitOrRollback(tx)
+
+	subject, err := s.SubjectsRepository.FindByID(ctx, tx, subjectsId)
+	helper.PanicIfError(err)
+
+	s.SubjectsRepository.Delete(ctx, tx, subject)
 }
 
 func (s *SubjectsServiceImpl) FindById(ctx context.Context, subjectsId int) response.SubjectsResponse {
 	//TODO implement me
-	panic("implement me")
+	tx, err := s.DB.Begin()
+	helper.PanicIfError(err)
+	defer helper.CommitOrRollback(tx)
+
+	subject, err := s.SubjectsRepository.FindByID(ctx, tx, subjectsId)
+	helper.PanicIfError(err)
+
+	return helper.ToSubjectsResponse(subject)
+
 }
 
 func (s *SubjectsServiceImpl) FindByUsername(ctx context.Context, subjectsName string) response.SubjectsResponse {
 	//TODO implement me
-	panic("implement me")
+	tx, err := s.DB.Begin()
+	helper.PanicIfError(err)
+	defer helper.CommitOrRollback(tx)
+
+	subject, err := s.SubjectsRepository.FindBySubjectName(ctx, tx, subjectsName)
+	helper.PanicIfError(err)
+
+	return helper.ToSubjectsResponse(subject)
 }
 
 func (s *SubjectsServiceImpl) FindAll(ctx context.Context) []response.SubjectsResponse {
 	//TODO implement me
-	panic("implement me")
+	tx, err := s.DB.Begin()
+	helper.PanicIfError(err)
+	defer helper.CommitOrRollback(tx)
+
+	subjects := s.SubjectsRepository.FindAll(ctx, tx)
+
+	return helper.ToSubjectResponses(subjects)
 }
