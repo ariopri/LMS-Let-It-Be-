@@ -12,13 +12,13 @@ type SubjectRepositoryImpl struct {
 	db *sql.DB
 }
 
-func NewSubjectRepositoryImpl(db *sql.DB) SubjectRepository {
+func NewSubjectRepository(db *sql.DB) SubjectRepository {
 	return &SubjectRepositoryImpl{db: db}
 }
 
 func (s *SubjectRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, subject domain.Subject) domain.Subject {
 	//TODO implement me
-	SQL := "INSERT INTO subjects (ubject_name) VALUES (?)"
+	SQL := "INSERT INTO subjects (subject_name) VALUES (?)"
 	result, err := tx.ExecContext(ctx, SQL, subject.SubjectName)
 	helper.PanicIfError(err)
 
@@ -45,10 +45,10 @@ func (s *SubjectRepositoryImpl) Delete(ctx context.Context, tx *sql.Tx, subject 
 	helper.PanicIfError(err)
 }
 
-func (s *SubjectRepositoryImpl) FindByID(ctx context.Context, tx *sql.Tx, subjectID int) (domain.Subject, error) {
+func (s *SubjectRepositoryImpl) FindByID(ctx context.Context, tx *sql.Tx, subjectId int) (domain.Subject, error) {
 	//TODO implement me
 	SQL := "SELECT id, subject_name FROM subjects WHERE id = ?"
-	rows, err := tx.QueryContext(ctx, SQL, subjectID)
+	rows, err := tx.QueryContext(ctx, SQL, subjectId)
 	helper.PanicIfError(err)
 	defer rows.Close()
 
@@ -59,7 +59,7 @@ func (s *SubjectRepositoryImpl) FindByID(ctx context.Context, tx *sql.Tx, subjec
 
 		return subjects, nil
 	} else {
-		return subjects, errors.New("ID" + string(subjectID) + "not found")
+		return subjects, errors.New("ID" + string(subjectId) + "not found")
 	}
 }
 

@@ -13,15 +13,16 @@ func ToLoginResponse(token, role string) response.LoginResponse {
 	}
 }
 
-func ToSubjectsResponse(subjects domain.Subject) response.SubjectsResponse {
+func ToSubjectsResponse(subject domain.Subject) response.SubjectsResponse {
 	return response.SubjectsResponse{
-		SubjectName: subjects.SubjectName,
+		Id:          subject.Id,
+		SubjectName: subject.SubjectName,
 	}
 }
 
-func ToSubjectResponses(subjects []domain.Subject) []response.SubjectsResponse {
+func ToSubjectResponses(subject []domain.Subject) []response.SubjectsResponse {
 	var subjectResponses []response.SubjectsResponse
-	for _, subject := range subjects {
+	for _, subject := range subject {
 		subjectResponses = append(subjectResponses, ToSubjectsResponse(subject))
 	}
 	return subjectResponses

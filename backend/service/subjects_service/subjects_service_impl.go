@@ -17,7 +17,7 @@ type SubjectsServiceImpl struct {
 	Validate           *validator.Validate
 }
 
-func NewSubjectsServiceImpl(subjectsRepository subjects_repository.SubjectRepository, db *sql.DB, validate *validator.Validate) SubjectsService {
+func NewSubjectsService(subjectsRepository subjects_repository.SubjectRepository, db *sql.DB, validate *validator.Validate) SubjectsService {
 	return &SubjectsServiceImpl{SubjectsRepository: subjectsRepository, DB: db, Validate: validate}
 }
 
@@ -47,35 +47,35 @@ func (s *SubjectsServiceImpl) Update(ctx context.Context, request request.Subjec
 	helper.PanicIfError(err)
 	defer helper.CommitOrRollback(tx)
 
-	subject, err := s.SubjectsRepository.FindByID(ctx, tx, request.Id)
+	subjects, err := s.SubjectsRepository.FindByID(ctx, tx, request.Id)
 	helper.PanicIfError(err)
 
-	subject.SubjectName = request.SubjectName
+	subjects.SubjectName = request.SubjectName
 
-	subject = s.SubjectsRepository.Update(ctx, tx, subject)
+	subjects = s.SubjectsRepository.Update(ctx, tx, subjects)
 
-	return helper.ToSubjectsResponse(subject)
+	return helper.ToSubjectsResponse(subjects)
 }
 
-func (s *SubjectsServiceImpl) Delete(ctx context.Context, subjectsId int) {
+func (s *SubjectsServiceImpl) Delete(ctx context.Context, subjectId int) {
 	//TODO implement me
 	tx, err := s.DB.Begin()
 	helper.PanicIfError(err)
 	defer helper.CommitOrRollback(tx)
 
-	subject, err := s.SubjectsRepository.FindByID(ctx, tx, subjectsId)
+	subject, err := s.SubjectsRepository.FindByID(ctx, tx, subjectId)
 	helper.PanicIfError(err)
 
 	s.SubjectsRepository.Delete(ctx, tx, subject)
 }
 
-func (s *SubjectsServiceImpl) FindById(ctx context.Context, subjectsId int) response.SubjectsResponse {
+func (s *SubjectsServiceImpl) FindById(ctx context.Context, subjectId int) response.SubjectsResponse {
 	//TODO implement me
 	tx, err := s.DB.Begin()
 	helper.PanicIfError(err)
 	defer helper.CommitOrRollback(tx)
 
-	subject, err := s.SubjectsRepository.FindByID(ctx, tx, subjectsId)
+	subject, err := s.SubjectsRepository.FindByID(ctx, tx, subjectId)
 	helper.PanicIfError(err)
 
 	return helper.ToSubjectsResponse(subject)

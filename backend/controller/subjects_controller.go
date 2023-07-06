@@ -38,32 +38,26 @@ func (controller *SubjectsController) Create(ctx *gin.Context) {
 }
 
 func (controller *SubjectsController) Update(ctx *gin.Context) {
-	//TODO implement me
-	subjectUpdateRequest := request.SubjectUpdateRequest{}
-	err := ctx.ShouldBindJSON(&subjectUpdateRequest)
-	if err != nil {
-		ctx.JSON(400, gin.H{"message": "bad request"})
+	subjectsUpdateRequest := request.SubjectUpdateRequest{}
+	if err := ctx.ShouldBindJSON(&subjectsUpdateRequest); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"message": "Bad request"})
 		return
 	}
-	subjectsId := ctx.Param("id")
-	id, err := strconv.Atoi(subjectsId)
-	helper.PanicIfError(err)
 
-	subjects := controller.SubjectsService.FindById(ctx, id)
-	if subjects.Id == 0 {
-		ctx.JSON(400, gin.H{"message": "bad request"})
-		return
-	}
+	subjectId := ctx.Param("id")
+	id, err := strconv.Atoi(subjectId)
 	helper.PanicIfError(err)
+	subjectsUpdateRequest.Id = id
 
-	subjectsResponse := controller.SubjectsService.Update(ctx, subjectUpdateRequest)
+	subjectsResponse := controller.SubjectsService.Update(ctx, subjectsUpdateRequest)
+
 	webResponse := response.WebResponse{
-		Code:   http.StatusOK,
-		Status: "OK",
-		Data:   subjectsResponse,
+		Code:    http.StatusOK,
+		Status:  "OK",
+		Message: "success update subject",
+		Data:    subjectsResponse,
 	}
 	ctx.JSON(http.StatusOK, webResponse)
-	return
 }
 
 func (controller *SubjectsController) Delete(ctx *gin.Context) {
