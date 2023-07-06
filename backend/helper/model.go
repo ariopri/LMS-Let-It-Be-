@@ -15,7 +15,14 @@ func ToLoginResponse(token, role string) response.LoginResponse {
 
 func ToSubjectsResponse(subjects domain.Subject) response.SubjectsResponse {
 	return response.SubjectsResponse{
-		Id:          int(subjects.Id),
 		SubjectName: subjects.SubjectName,
 	}
+}
+
+func ToSubjectResponses(subjects []domain.Subject) []response.SubjectsResponse {
+	var subjectResponses []response.SubjectsResponse
+	for _, subject := range subjects {
+		subjectResponses = append(subjectResponses, ToSubjectsResponse(subject))
+	}
+	return subjectResponses
 }
