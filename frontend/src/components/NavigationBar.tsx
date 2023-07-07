@@ -4,11 +4,12 @@ import {
   Flex,
   Avatar,
   HStack,
-  Link,
   IconButton,
   Button,
   Menu,
+  Image,
   MenuButton,
+  Container,
   MenuList,
   MenuItem,
   MenuDivider,
@@ -16,9 +17,13 @@ import {
   useColorModeValue,
   useColorMode,
   Stack,
+  Heading,
+  Text,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { Link as LinkTo } from "react-router-dom";
+import Logo from "../assets/logo.svg"
 
 interface LinkItem {
     nama: string;
@@ -31,8 +36,18 @@ const Links: LinkItem[] = [
     { nama: 'Informasi', link: '/informasi' },
 ]
 
-const NavLink = ({ children, link }: { children: ReactNode, link: string }) => (
-  <Link
+const NavLink = ({
+  children,
+  link,
+  onClick,
+}: {
+  children: ReactNode;
+  link: string;
+  onClick?: () => void;
+}) => (
+  <Text
+    as={LinkTo}
+    to={link}
     px={2}
     py={1}
     rounded={'md'}
@@ -40,20 +55,50 @@ const NavLink = ({ children, link }: { children: ReactNode, link: string }) => (
       textDecoration: 'none',
       bg: useColorModeValue('gray.200', 'gray.700'),
     }}
-    href={link}>
+    onClick={onClick}
+    w="max-content"
+  >
     {children}
-  </Link>
+  </Text>
 );
 
+
 export default function NavigationBar() {
-    const { colorMode, toggleColorMode } = useColorMode();
+  const isLoggedIn = false;
+
+  const bgnavbar = useColorModeValue(
+    "rgba(255, 255, 255, 0.8)",
+    "rgba(26, 32, 44, 0.8)"
+  );
+
+  const navbarSet = {
+    color: useColorModeValue("white", "black"),
+    bg: useColorModeValue("accentLight.400", "accentDark.400"),
+    _hover: {
+      bg: useColorModeValue("accentLight.500", "accentDark.500"),
+    },
+  };
+  const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+      <Box
+        as="header"
+        position={"sticky"}
+        top={0}
+        left={0}
+        right={0}
+        w={"full"}
+        zIndex={3}
+        bg={bgnavbar}
+        backdropFilter="auto"
+        backdropBlur="5px"
+        boxShadow="sm"
+       >
+      <Container maxW={"7xl"}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
+          variant={'ghost'}
             size={'md'}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={'Open Menu'}
@@ -61,16 +106,51 @@ export default function NavigationBar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Box>Logo</Box>
-            <HStack
+            <Box>
+              <HStack as={LinkTo} to="/" alignItems={"center"} >
+              <Image src={Logo} alt="Logo" />
+              <Heading 
+                as="h3"
+                size="md"
+                fontWeight={500}
+                display={{ base: "none", sm: "block" }}
+              >
+                <Text
+                    color={useColorModeValue(
+                      "accentLight.400",
+                      "accentDark.400"
+                    )}
+                    as={"span"}
+                    position={"relative"}
+                    _after={{
+                      content: "''",
+                      width: "full",
+                      height: "15%",
+                      position: "absolute",
+                      bottom: 1,
+                      left: 0,
+                      zIndex: -1,
+                    }}
+                >
+                  Let
+                </Text>
+                <br />
+                It Be
+              </Heading>  
+              </HStack>
+            </Box>
+          </HStack>
+          <HStack
               as={'nav'}
               spacing={4}
               display={{ base: 'none', md: 'flex' }}>
+              mr={4}
               {Links.map((link) => (
-                <NavLink key={link.nama} {...link}>{link.nama}</NavLink>
+                <NavLink key={link.nama} {...link}>
+                  {link.nama}
+                </NavLink>
               ))}
             </HStack>
-          </HStack>
           <Flex alignItems={'center'}>
           <IconButton
               variant={'ghost'}
@@ -80,7 +160,8 @@ export default function NavigationBar() {
               mr={4}
               onClick={toggleColorMode}
             />
-            <Menu>
+            {isLoggedIn ? (
+              <Menu>
               <MenuButton
                 as={Button}
                 rounded={'full'}
@@ -101,21 +182,32 @@ export default function NavigationBar() {
                 <MenuItem>Link 3</MenuItem>
               </MenuList>
             </Menu>
+            ) : (
+              <Button as={LinkTo} to="/masuk" size={"sm"} {...navbarSet}>
+                MASUK
+              </Button>
+            )}
           </Flex>
         </Flex>
+        </Container>
 
         {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
+          <Container
+          display={{ md: "none" }}
+          pos="fixed"
+          zIndex={3}
+          bg={bgnavbar}
+          w={"full"}
+          maxW="7xl"
+          p={4}
+          >
             <Stack as={'nav'} spacing={4}>
               {Links.map((link) => (
                 <NavLink key={link.nama} {...link}>{link.nama}</NavLink>
               ))}
             </Stack>
-          </Box>
+            </Container>
         ) : null}
       </Box>
-
-      <Box p={4}>Main Content Here</Box>
-    </>
   );
 }
