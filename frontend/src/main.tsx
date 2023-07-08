@@ -1,12 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
-
-AOS.init({duration: 10000})
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init({
+  duration: 1000,
+});
 
 interface Colors {
  [key: string]: {
