@@ -9,7 +9,7 @@ import (
 
 func NewRouter(userRepository user_repository.UserRepository, authenticationController *controller.AuthenticationController, userController *controller.UserController, subjectsController *controller.SubjectsController) *gin.Engine {
 	service := gin.Default()
-
+	middlewares.SetupCorsMiddleware(service)
 	service.GET("", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
 			"message": "",
