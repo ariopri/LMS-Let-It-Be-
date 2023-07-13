@@ -31,11 +31,12 @@ interface LinkItem {
 }
 
 const Links: LinkItem[] = [
-    { nama: 'Modul', link: '/modul' },
-    { nama: 'Hubungi', link: '/hubungi' },
-    { nama: 'Informasi', link: '/informasi' },
+  { nama: 'Kelas', link: '/kelas' },
+  { nama: 'Informasi', link: '/informasi' }, 
+  { nama: 'Event', link: '/event'},
+  { nama: 'Hubungi', link: '/hubungi' },
+  { nama: 'Tentang', link: '/tentang' },
 ]
-
 const NavLink = ({
   children,
   link,

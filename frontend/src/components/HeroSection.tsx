@@ -1,4 +1,4 @@
-import Images from "../assets/Hero.svg";
+import Images from "../assets/hero_images.png";
 import {
   Button,
   Flex,
@@ -28,9 +28,10 @@ export default function HeroSection() {
       >
         <Stack spacing={6} w={"full"}>
           <Heading
-            mt={{ base: 4, md: 0 }}
+            mt={{ base: 4, md: 10 }}
             fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
             fontWeight={"bold"}
+           
           >
             <Text
               fontWeight="extrabold"
@@ -103,7 +104,7 @@ export default function HeroSection() {
         order={{ base: 1, lg: 2 }}
         pl={{ md: "40px" }}
       >
-        <Image p={5} alt={""} objectFit={"cover"} src={Images} />
+        <Image p={5} alt={""} objectFit={"cover"}  src={Images} />
       </Flex>
     </Stack>
   );
