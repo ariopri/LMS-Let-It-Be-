@@ -17,6 +17,7 @@ func ToSubjectsResponse(subject domain.Subject) response.SubjectsResponse {
 	return response.SubjectsResponse{
 		Id:          subject.Id,
 		SubjectName: subject.SubjectName,
+		Avatar:      subject.Avatar,
 	}
 }
 
@@ -26,4 +27,10 @@ func ToSubjectResponses(subject []domain.Subject) []response.SubjectsResponse {
 		subjectResponses = append(subjectResponses, ToSubjectsResponse(subject))
 	}
 	return subjectResponses
+}
+
+func ToForgotPasswordResponse(token string) response.ForgotPasswordResponse {
+	return response.ForgotPasswordResponse{
+		Token: token,
+	}
 }

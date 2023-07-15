@@ -51,6 +51,7 @@ func (s *SubjectsServiceImpl) Update(ctx context.Context, request request.Subjec
 	helper.PanicIfError(err)
 
 	subjects.SubjectName = request.SubjectName
+	subjects.Avatar = request.Avatar
 
 	subjects = s.SubjectsRepository.Update(ctx, tx, subjects)
 

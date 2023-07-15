@@ -8,4 +8,5 @@ import (
 type AuthenticationService interface {
 	Login(ctx context.Context, request request.LoginCreateRequest) (string, error)
 	Register(ctx context.Context, request request.UserCreateRequest)
+	Forgot(ctx context.Context, request request.ForgotPasswordRequest) (string, error)
 }

@@ -12,5 +12,8 @@ type UserRepository interface {
 	Delete(ctx context.Context, tx *sql.Tx, user domain.User)
 	FindByID(ctx context.Context, tx *sql.Tx, userId int) (domain.User, error)
 	FindByUsername(ctx context.Context, tx *sql.Tx, username string) (domain.User, error)
+	FindByEmail(ctx context.Context, tx *sql.Tx, email string) (domain.User, error)
 	FindAll(ctx context.Context, tx *sql.Tx) []domain.User
+	Forgot(ctx context.Context, tx *sql.Tx, email string) (domain.User, error)
+	IsUniqueFieldExist(ctx context.Context, tx *sql.Tx, field string, value string) (bool, error)
 }

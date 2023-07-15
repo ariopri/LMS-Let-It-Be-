@@ -63,7 +63,33 @@ func (controller *AuthenticationController) Register(ctx *gin.Context) {
 		Code:    http.StatusOK,
 		Status:  "OK",
 		Message: "register success",
-		Data:    "",
+	}
+	ctx.JSON(http.StatusOK, webResponse)
+}
+
+func (controller *AuthenticationController) Forgot(ctx *gin.Context) {
+	forgotRequest := request.ForgotPasswordRequest{}
+	err := ctx.ShouldBindJSON(&forgotRequest)
+	helper.PanicIfError(err)
+
+	token, err_token := controller.authenticationService.Forgot(ctx, forgotRequest)
+	if err_token != nil {
+		webResponse := response.WebResponse{
+			Code:    http.StatusBadRequest,
+			Status:  "BAD REQUEST",
+			Message: "invalid email",
+		}
+		ctx.JSON(http.StatusBadRequest, webResponse)
+		return
+	}
+
+	resp := helper.ToForgotPasswordResponse(token)
+
+	webResponse := response.WebResponse{
+		Code:    http.StatusOK,
+		Status:  "OK",
+		Message: "forgot password success",
+		Data:    resp,
 	}
 	ctx.JSON(http.StatusOK, webResponse)
 }

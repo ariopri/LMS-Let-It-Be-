@@ -22,7 +22,7 @@ func NewUserRepository(db *sql.DB) UserRepository {
 
 func (u *UserRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, user domain.User) domain.User {
 	//TODO implement me
-	SQL := "INSERT INTO users (firstname, lastname, username, email, password, role, avatar, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+	SQL := "INSERT INTO users (firstname, lastname, username, email, password) VALUES (?, ?, ?, ?, ?)"
 	result, err := tx.ExecContext(
 		ctx,
 		SQL,
@@ -31,10 +31,6 @@ func (u *UserRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, user domain.U
 		user.Username,
 		user.Email,
 		user.Password,
-		user.Role,
-		user.Avatar,
-		user.CreatedAt,
-		user.UpdatedAt,
 	)
 	helper.PanicIfError(err)
 
@@ -165,6 +161,34 @@ func (u *UserRepositoryImpl) FindByUsername(ctx context.Context, tx *sql.Tx, use
 	}
 }
 
+func (u *UserRepositoryImpl) FindByEmail(ctx context.Context, tx *sql.Tx, email string) (domain.User, error) {
+	//TODO implement me
+	SQL := "SELECT id, firstname, lastname, username, email, password, role, avatar, created_at, updated_at FROM users WHERE email = ?"
+	rows, err := tx.QueryContext(ctx, SQL, email)
+	helper.PanicIfError(err)
+	defer rows.Close()
+
+	user := domain.User{}
+	if rows.Next() {
+		err := rows.Scan(
+			&user.Id,
+			&user.FirstName,
+			&user.LastName,
+			&user.Username,
+			&user.Email,
+			&user.Password,
+			&user.Role,
+			&user.Avatar,
+			&user.CreatedAt,
+			&user.UpdatedAt,
+		)
+		helper.PanicIfError(err)
+		return user, nil
+	} else {
+		return user, errors.New("user not found")
+	}
+}
+
 func (u *UserRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domain.User {
 	//TODO implement me
 	SQL := "SELECT id, firstname, lastname, username, email, password, role, avatar, created_at, updated_at FROM users"
@@ -191,4 +215,49 @@ func (u *UserRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domain.U
 		users = append(users, user)
 	}
 	return users
+}
+
+func (u *UserRepositoryImpl) Forgot(ctx context.Context, tx *sql.Tx, email string) (domain.User, error) {
+	//TODO implement me
+	SQL := "SELECT id, firstname, lastname, username, email, password, role, avatar, created_at, updated_at FROM users WHERE email = ?"
+	rows, err := tx.QueryContext(ctx, SQL, email)
+	helper.PanicIfError(err)
+	defer rows.Close()
+
+	user := domain.User{}
+	if rows.Next() {
+		err := rows.Scan(
+			&user.Id,
+			&user.FirstName,
+			&user.LastName,
+			&user.Username,
+			&user.Email,
+			&user.Password,
+			&user.Role,
+			&user.Avatar,
+			&user.CreatedAt,
+			&user.UpdatedAt,
+		)
+		helper.PanicIfError(err)
+		return user, nil
+	} else {
+		return user, errors.New("user not found")
+	}
+}
+
+func (u *UserRepositoryImpl) IsUniqueFieldExist(ctx context.Context, tx *sql.Tx, field string, value string) (bool, error) {
+	// Query untuk memeriksa keberadaan nilai pada field tertentu
+	SQL := "SELECT id FROM users WHERE " + field + " = ?"
+	rows, err := tx.QueryContext(ctx, SQL, value)
+	helper.PanicIfError(err)
+	defer rows.Close()
+
+	// Periksa apakah ada baris yang dikembalikan
+	if rows.Next() {
+		// Nilai sudah ada, bukan unik
+		return false, nil
+	} else {
+		// Nilai belum ada, unik
+		return true, nil
+	}
 }

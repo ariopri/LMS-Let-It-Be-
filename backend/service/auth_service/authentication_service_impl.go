@@ -58,6 +58,19 @@ func (auth *AuthenticationServiceImpl) Register(ctx context.Context, request req
 	helper.PanicIfError(err)
 	defer helper.CommitOrRollback(tx)
 
+	if exist, err := auth.UserRepository.IsUniqueFieldExist(ctx, tx, "username", request.Username); err != nil {
+		helper.PanicIfError(err)
+	} else if !exist {
+		helper.PanicIfError(err)
+	}
+
+	// Validasi keunikan Email
+	if exist, err := auth.UserRepository.IsUniqueFieldExist(ctx, tx, "email", request.Email); err != nil {
+		helper.PanicIfError(err)
+	} else if !exist {
+		helper.PanicIfError(err)
+	}
+
 	hashedPassword, err := utils.HashPassword(request.Password)
 	helper.PanicIfError(err)
 
@@ -70,4 +83,26 @@ func (auth *AuthenticationServiceImpl) Register(ctx context.Context, request req
 	}
 
 	auth.UserRepository.Save(ctx, tx, user)
+}
+
+func (auth *AuthenticationServiceImpl) Forgot(ctx context.Context, request request.ForgotPasswordRequest) (string, error) {
+	//TODO implement me
+	err := auth.validate.Struct(request)
+	helper.PanicIfError(err)
+
+	tx, err := auth.DB.Begin()
+	helper.PanicIfError(err)
+	defer helper.CommitOrRollback(tx)
+
+	new_user, err_user := auth.UserRepository.FindByEmail(ctx, tx, request.Email)
+	if err_user != nil {
+		return "", fmt.Errorf("email not found")
+	}
+	config, _ := config.LoadConfig(".")
+
+	token, err_token := utils.GenerateToken(config.TokenExpiresIn, new_user.Id, config.TokenSecret)
+	helper.PanicIfError(err_token)
+
+	return token, nil
+
 }

@@ -31,8 +31,8 @@ func (s *SubjectRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, subject do
 
 func (s *SubjectRepositoryImpl) Update(ctx context.Context, tx *sql.Tx, subject domain.Subject) domain.Subject {
 	//TODO implement me
-	SQL := "UPDATE subjects SET subject_name = ? WHERE id = ?"
-	_, err := tx.ExecContext(ctx, SQL, subject.SubjectName, subject.Id)
+	SQL := "UPDATE subjects SET subject_name = ?, avatar = ? WHERE id = ?"
+	_, err := tx.ExecContext(ctx, SQL, subject.SubjectName, subject.Avatar, subject.Id)
 	helper.PanicIfError(err)
 
 	return subject
@@ -47,14 +47,14 @@ func (s *SubjectRepositoryImpl) Delete(ctx context.Context, tx *sql.Tx, subject 
 
 func (s *SubjectRepositoryImpl) FindByID(ctx context.Context, tx *sql.Tx, subjectId int) (domain.Subject, error) {
 	//TODO implement me
-	SQL := "SELECT id, subject_name FROM subjects WHERE id = ?"
+	SQL := "SELECT id, subject_name, avatar FROM subjects WHERE id = ?"
 	rows, err := tx.QueryContext(ctx, SQL, subjectId)
 	helper.PanicIfError(err)
 	defer rows.Close()
 
 	subjects := domain.Subject{}
 	if rows.Next() {
-		err := rows.Scan(&subjects.Id, &subjects.SubjectName)
+		err := rows.Scan(&subjects.Id, &subjects.SubjectName, &subjects.Avatar)
 		helper.PanicIfError(err)
 
 		return subjects, nil
@@ -65,14 +65,14 @@ func (s *SubjectRepositoryImpl) FindByID(ctx context.Context, tx *sql.Tx, subjec
 
 func (s *SubjectRepositoryImpl) FindBySubjectName(ctx context.Context, tx *sql.Tx, subjectName string) (domain.Subject, error) {
 	//TODO implement me
-	SQL := "SELECT id, subject_name FROM subjects WHERE subject_name = ?"
+	SQL := "SELECT id, subject_name, avatar FROM subjects WHERE subject_name = ?"
 	rows, err := tx.QueryContext(ctx, SQL, subjectName)
 	helper.PanicIfError(err)
 	defer rows.Close()
 
 	subjects := domain.Subject{}
 	if rows.Next() {
-		err := rows.Scan(&subjects.Id, &subjects.SubjectName)
+		err := rows.Scan(&subjects.Id, &subjects.SubjectName, &subjects.Avatar)
 		helper.PanicIfError(err)
 
 		return subjects, nil
@@ -83,7 +83,7 @@ func (s *SubjectRepositoryImpl) FindBySubjectName(ctx context.Context, tx *sql.T
 
 func (s *SubjectRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domain.Subject {
 	//TODO implement me
-	SQL := "SELECT id, subject_name FROM subjects"
+	SQL := "SELECT id, subject_name, avatar FROM subjects"
 	rows, err := tx.QueryContext(ctx, SQL)
 	helper.PanicIfError(err)
 	defer rows.Close()
@@ -91,7 +91,7 @@ func (s *SubjectRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domai
 	var subjects []domain.Subject
 	for rows.Next() {
 		subject := domain.Subject{}
-		err := rows.Scan(&subject.Id, &subject.SubjectName)
+		err := rows.Scan(&subject.Id, &subject.SubjectName, &subject.Avatar)
 		helper.PanicIfError(err)
 
 		subjects = append(subjects, subject)
