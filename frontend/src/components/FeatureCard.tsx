@@ -5,6 +5,7 @@ import {
   SimpleGrid,
   Stack,
   Text,
+  Image,
 
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -13,6 +14,7 @@ import axios, { AxiosResponse } from "axios";
 interface Subject {
   id: number;
   subject_name: string;
+  avatar : string;
 }
 
 function SubjectList(): JSX.Element {
@@ -78,7 +80,7 @@ export function FeaturesCard({ subjects }: FeaturesCardProps): JSX.Element {
               textAlign={"center"}
               key={subject.id}
             >
-              {subject.subject_name}
+              <Image src={subject.avatar} alt={subject.subject_name} />
             </Text>
           ))}
         </SimpleGrid>
